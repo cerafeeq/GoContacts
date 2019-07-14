@@ -85,7 +85,12 @@ class AddEditProfileVC: UITableViewController {
 
 	@IBAction func doneTapped(_ sender: Any) {
 		var dictContact = [String: String]()
-		guard let image = profileImageView.image else { return }
+
+		var image: UIImage?
+
+		if (isImageModified) {
+			image = profileImageView.image!
+		}
 
 		dictContact.updateValue(firstNameField.text!, forKey: "first_name")
 		dictContact.updateValue(lastNameField.text!, forKey: "last_name")
