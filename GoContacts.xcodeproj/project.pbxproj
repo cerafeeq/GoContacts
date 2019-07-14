@@ -10,6 +10,7 @@
 		5087EA14D31D5A69384F97AD /* Pods_GoContacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44D3DF87244E35F384A9998A /* Pods_GoContacts.framework */; };
 		C703EC1A22DB4D28003438AF /* ViewProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C703EC1922DB4D28003438AF /* ViewProfileVC.swift */; };
 		C703EC1E22DB54B9003438AF /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = C703EC1D22DB54B9003438AF /* Utility.swift */; };
+		C703EC2022DB5DAE003438AF /* AddEditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C703EC1F22DB5DAE003438AF /* AddEditProfileVC.swift */; };
 		C73E283C22DB1CFB0075622B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73E283B22DB1CFB0075622B /* AppDelegate.swift */; };
 		C73E284122DB1CFB0075622B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C73E283F22DB1CFB0075622B /* Main.storyboard */; };
 		C73E284422DB1CFB0075622B /* GoContacts.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C73E284222DB1CFB0075622B /* GoContacts.xcdatamodeld */; };
@@ -56,6 +57,7 @@
 		AF063B1078BF7D97C22890A5 /* Pods-GoContactsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoContactsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoContactsTests/Pods-GoContactsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C703EC1922DB4D28003438AF /* ViewProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewProfileVC.swift; sourceTree = "<group>"; };
 		C703EC1D22DB54B9003438AF /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		C703EC1F22DB5DAE003438AF /* AddEditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditProfileVC.swift; sourceTree = "<group>"; };
 		C73E283822DB1CFB0075622B /* GoContacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoContacts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C73E283B22DB1CFB0075622B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C73E284022DB1CFB0075622B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 			children = (
 				C73E286D22DB1E550075622B /* ContactsListVC.swift */,
 				C703EC1922DB4D28003438AF /* ViewProfileVC.swift */,
+				C703EC1F22DB5DAE003438AF /* AddEditProfileVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -464,6 +467,7 @@
 				C703EC1E22DB54B9003438AF /* Utility.swift in Sources */,
 				C73E287E22DB32E30075622B /* CoreDataStack.swift in Sources */,
 				C73E287922DB2A1D0075622B /* Contact+CoreDataProperties.swift in Sources */,
+				C703EC2022DB5DAE003438AF /* AddEditProfileVC.swift in Sources */,
 				C73E286E22DB1E550075622B /* ContactsListVC.swift in Sources */,
 				C73E287422DB27810075622B /* ApiRepository.swift in Sources */,
 				C73E287822DB2A1D0075622B /* Contact+CoreDataClass.swift in Sources */,
