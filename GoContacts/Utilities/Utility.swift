@@ -39,7 +39,7 @@ func createHttpBody(withParameters params: [String : Any]?, media: [Media]?, bou
 		for (key, value) in parameters {
 			body.append("--\(boundary + lineBreak)")
 			body.append("Content-Disposition: form-data; name=\"\(key)\"\(lineBreak + lineBreak)")
-			body.append("\(value) \r\n")
+			body.append("\(value)\r\n")
 		}
 	}
 

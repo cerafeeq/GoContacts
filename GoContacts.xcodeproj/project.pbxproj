@@ -13,6 +13,7 @@
 		C703EC2022DB5DAE003438AF /* AddEditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C703EC1F22DB5DAE003438AF /* AddEditProfileVC.swift */; };
 		C703EC2222DB6BC5003438AF /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = C703EC2122DB6BC5003438AF /* Media.swift */; };
 		C703EC2522DB6CAA003438AF /* Data+Append.swift in Sources */ = {isa = PBXBuildFile; fileRef = C703EC2422DB6CAA003438AF /* Data+Append.swift */; };
+		C703EC2B22DBA29E003438AF /* String+Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = C703EC2A22DBA29E003438AF /* String+Index.swift */; };
 		C73E283C22DB1CFB0075622B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73E283B22DB1CFB0075622B /* AppDelegate.swift */; };
 		C73E284122DB1CFB0075622B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C73E283F22DB1CFB0075622B /* Main.storyboard */; };
 		C73E284422DB1CFB0075622B /* GoContacts.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C73E284222DB1CFB0075622B /* GoContacts.xcdatamodeld */; };
@@ -62,6 +63,7 @@
 		C703EC1F22DB5DAE003438AF /* AddEditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditProfileVC.swift; sourceTree = "<group>"; };
 		C703EC2122DB6BC5003438AF /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		C703EC2422DB6CAA003438AF /* Data+Append.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Append.swift"; sourceTree = "<group>"; };
+		C703EC2A22DBA29E003438AF /* String+Index.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Index.swift"; sourceTree = "<group>"; };
 		C73E283822DB1CFB0075622B /* GoContacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoContacts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C73E283B22DB1CFB0075622B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C73E284022DB1CFB0075622B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				C703EC2422DB6CAA003438AF /* Data+Append.swift */,
+				C703EC2A22DBA29E003438AF /* String+Index.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -485,6 +488,7 @@
 				C73E286E22DB1E550075622B /* ContactsListVC.swift in Sources */,
 				C73E287422DB27810075622B /* ApiRepository.swift in Sources */,
 				C73E287822DB2A1D0075622B /* Contact+CoreDataClass.swift in Sources */,
+				C703EC2B22DBA29E003438AF /* String+Index.swift in Sources */,
 				C703EC2222DB6BC5003438AF /* Media.swift in Sources */,
 				C703EC2522DB6CAA003438AF /* Data+Append.swift in Sources */,
 				C73E287122DB26820075622B /* ContactsListViewCell.swift in Sources */,

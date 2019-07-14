@@ -16,11 +16,11 @@ class ContactsListVC: UITableViewController {
 
 	lazy var fetchedResultsController: NSFetchedResultsController<Contact> = {
 		let fetchRequest = NSFetchRequest<Contact>(entityName:"Contact")
-		fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending:true)]
+		fetchRequest.sortDescriptors = [NSSortDescriptor(key: "firstName", ascending:true)]
 
 		let controller = NSFetchedResultsController(fetchRequest: fetchRequest,
 													managedObjectContext: dataProvider.viewContext,
-													sectionNameKeyPath: nil, cacheName: nil)
+													sectionNameKeyPath: #keyPath(Contact.sectionIdentifier), cacheName: nil)
 		controller.delegate = self
 
 		do {
@@ -44,7 +44,7 @@ class ContactsListVC: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+		return fetchedResultsController.sections?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -61,7 +61,15 @@ class ContactsListVC: UITableViewController {
 
 		return cell
 	}
-	//
+
+	override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+		return fetchedResultsController.sectionIndexTitles
+	}
+
+	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		let sectionInfo = fetchedResultsController.sections?[section]
+		return sectionInfo?.name
+	}
 
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if let vc = segue.destination as? ViewProfileVC {

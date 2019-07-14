@@ -17,7 +17,14 @@ extension Contact {
         return NSFetchRequest<Contact>(entityName: "Contact")
     }
 
-    @NSManaged public var firstName: String?
+	@objc var sectionIdentifier: String {
+		get {
+			let firstChar = firstName?.character(at: 0)
+			return String(firstChar!)
+		}
+	}
+
+	@NSManaged public var firstName: String?
     @NSManaged public var lastName: String?
     @NSManaged public var email: String?
     @NSManaged public var phoneNumber: String?

@@ -45,6 +45,7 @@ class AddEditProfileVC: UITableViewController {
 		lastNameField.text = contact.lastName
 		mobileField.text = contact.phoneNumber
 		emailField.text = contact.email
+		profileImageView.sd_setImage(with: URL(string: contact.profilePic!), placeholderImage: UIImage(named: "placeholder"))
     }
 
 	override func viewWillAppear(_ animated: Bool) {

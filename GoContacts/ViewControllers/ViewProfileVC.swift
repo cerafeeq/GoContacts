@@ -32,7 +32,7 @@ class ViewProfileVC: UITableViewController {
 
 		nameLbl.text = contact.firstName! + " " + contact.lastName!
 
-		self.profileImageView.sd_setImage(with: URL(string: contact.profilePic!), placeholderImage: UIImage(named: "placeholder"))
+		profileImageView.sd_setImage(with: URL(string: contact.profilePic!), placeholderImage: UIImage(named: "placeholder"))
 
 		if (contact.favorite) {
 			favoriteBtn.setImage(UIImage(named: "favorite_selected"), for: .normal)
@@ -67,7 +67,7 @@ class ViewProfileVC: UITableViewController {
 
 		favoriteBtn.setImage(UIImage(named: (contact.favorite ? "favorite_selected" : "favorite")), for: .normal)
 
-		let dict = ["favorite" : String(contact.favorite)]
+		let dict = ["favorite" : contact.favorite]
 
 		ApiRepository.shared.updateContact(id: contact.id, dict: dict, image: nil) { serverResponse in
 			// TODO: update the Core Data record
