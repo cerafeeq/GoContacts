@@ -61,6 +61,14 @@ class ContactsListVC: UITableViewController {
 
 		return cell
 	}
+	//
+
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if let vc = segue.destination as? ViewProfileVC {
+			let indexPath = tableView.indexPathForSelectedRow
+			vc.contact = fetchedResultsController.object(at: indexPath!)
+		}
+	}
 }
 
 extension ContactsListVC: NSFetchedResultsControllerDelegate {
