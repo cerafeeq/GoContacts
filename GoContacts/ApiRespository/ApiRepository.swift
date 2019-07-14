@@ -6,7 +6,7 @@
 //  Copyright © 2019 Rafeeq Ebrahim. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 enum ServerResponse {
 	case Success
@@ -69,25 +69,72 @@ class ApiRepository {
 		}.resume()
 	}
 
-	func updateContact(id :Int32, dict: [String: String]) {
-		let updateURL = URL(string: baseURL + "/contacts/\(id).json")!
-		var urlRequest = URLRequest(url: updateURL)
+	func createContact(dict: [String: Any], image : UIImage?, completion: @escaping (ServerResponse) -> ()) {
+		guard let createURL = URL(string: baseURL + "/contacts.json") else { return }
+		var request = URLRequest(url: createURL)
+		request.httpMethod = "POST"
 
-		urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-		urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
+		var mediaArray = [Media]()
 
-		urlRequest.httpMethod = "PUT"
-
-		guard let postData = try? JSONEncoder().encode(dict) else {
-			return
+		if let image = image {
+			let mediaImage = Media(withImage: image, forKey: "profile_pic")
+			mediaArray.append(mediaImage!)
 		}
 
-		urlRequest.httpBody = postData
+		let boundary = generateBoundary()
 
-		urlSession.dataTask(with: urlRequest) { data, response, error in
+		request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+
+		let httpBody = createHttpBody(withParameters: dict, media: mediaArray, boundary: boundary)
+		request.httpBody = httpBody
+
+		urlSession.dataTask(with: request) { (data, response, error) in
 			guard error == nil else {
 				print ("Error: \(String(describing: error))")
 				return
+			}
+
+			if let httpResponse = response as? HTTPURLResponse {
+				if (httpResponse.statusCode == 201) {
+					completion(ServerResponse.Success)
+				} else {
+					completion(ServerResponse.Failure)
+				}
+			}
+		}.resume()
+	}
+
+	func updateContact(id: Int32, dict: [String: Any], image : UIImage?, completion: @escaping (ServerResponse) -> ()) {
+		guard let updateURL = URL(string: baseURL + "/contacts/\(id).json") else { return }
+		var request = URLRequest(url: updateURL)
+		request.httpMethod = "PUT"
+
+		var mediaArray = [Media]()
+
+		if let image = image {
+			let mediaImage = Media(withImage: image, forKey: "profile_pic")
+			mediaArray.append(mediaImage!)
+		}
+
+		let boundary = generateBoundary()
+
+		request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+
+		let httpBody = createHttpBody(withParameters: dict, media: mediaArray, boundary: boundary)
+		request.httpBody = httpBody
+
+		urlSession.dataTask(with: request) { (data, response, error) in
+			guard error == nil else {
+				print ("Error: \(String(describing: error))")
+				return
+			}
+
+			if let httpResponse = response as? HTTPURLResponse {
+				if (httpResponse.statusCode == 200) {
+					completion(ServerResponse.Success)
+				} else {
+					completion(ServerResponse.Failure)
+				}
 			}
 		}.resume()
 	}

@@ -16,6 +16,8 @@ class AddEditProfileVC: UITableViewController {
 
 	var isEdit: Bool = false
 
+	var isImageModified: Bool = false
+
 	@IBOutlet var profileImageView: UIImageView!
 	@IBOutlet var firstNameField: UITextField!
 	@IBOutlet var lastNameField: UITextField!
@@ -78,9 +80,49 @@ class AddEditProfileVC: UITableViewController {
 	//
 
 	@IBAction func cancelTapped(_ sender: Any) {
+		self.dismiss(animated: true, completion: nil)
 	}
 
 	@IBAction func doneTapped(_ sender: Any) {
+		var dictContact = [String: String]()
+		guard let image = profileImageView.image else { return }
+
+		dictContact.updateValue(firstNameField.text!, forKey: "first_name")
+		dictContact.updateValue(lastNameField.text!, forKey: "last_name")
+		dictContact.updateValue(emailField.text!, forKey: "email")
+		dictContact.updateValue(mobileField.text!, forKey: "phone_number")
+
+		if (isEdit) {
+			ApiRepository.shared.updateContact(id: contact!.id, dict: dictContact, image: image) { serverResponse in
+				print(serverResponse)
+				if (serverResponse == .Failure) {
+					DispatchQueue.main.async { [weak self] in
+						let ac = UIAlertController(title: "Contacts", message: "Failed to create contact", preferredStyle: .alert)
+						ac.addAction(UIAlertAction(title: "OK", style: .default))
+						self?.present(ac, animated: true)
+					}
+				} else {
+					DispatchQueue.main.async { [weak self] in
+						self?.dismiss(animated: true, completion: nil)
+					}
+				}
+			}
+		} else {
+			ApiRepository.shared.createContact(dict: dictContact, image: image) { serverResponse in
+				print(serverResponse)
+				if (serverResponse == .Failure) {
+					DispatchQueue.main.async { [weak self] in
+						let ac = UIAlertController(title: "Contacts", message: "Failed to create contact", preferredStyle: .alert)
+						ac.addAction(UIAlertAction(title: "OK", style: .default))
+						self?.present(ac, animated: true)
+					}
+				} else {
+					DispatchQueue.main.async { [weak self] in
+						self?.dismiss(animated: true, completion: nil)
+					}
+				}
+			}
+		}
 	}
 }
 
@@ -91,8 +133,8 @@ extension AddEditProfileVC: UINavigationControllerDelegate, UIImagePickerControl
 
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
 		let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-
 		self.profileImageView.image = image
+		self.isImageModified = true
 
 		dismiss(animated: true, completion: nil)
 	}

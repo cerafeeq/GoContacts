@@ -69,9 +69,15 @@ class ViewProfileVC: UITableViewController {
 
 		let dict = ["favorite" : String(contact.favorite)]
 
-		// TODO: update the Core Data record
+		ApiRepository.shared.updateContact(id: contact.id, dict: dict, image: nil) { serverResponse in
+			// TODO: update the Core Data record
+		}
+	}
 
-		ApiRepository.shared.updateContact(id: contact.id, dict: dict)
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if let nc = segue.destination as? UINavigationController, let vc = nc.topViewController as? AddEditProfileVC  {
+			vc.contact = contact
+		}
 	}
 
     // MARK: - Table view data source
