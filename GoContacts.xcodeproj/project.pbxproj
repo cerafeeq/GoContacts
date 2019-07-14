@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		C73E283C22DB1CFB0075622B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73E283B22DB1CFB0075622B /* AppDelegate.swift */; };
-		C73E283E22DB1CFB0075622B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73E283D22DB1CFB0075622B /* ViewController.swift */; };
 		C73E284122DB1CFB0075622B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C73E283F22DB1CFB0075622B /* Main.storyboard */; };
 		C73E284422DB1CFB0075622B /* GoContacts.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C73E284222DB1CFB0075622B /* GoContacts.xcdatamodeld */; };
 		C73E284622DB1CFD0075622B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C73E284522DB1CFD0075622B /* Assets.xcassets */; };
@@ -37,7 +36,6 @@
 /* Begin PBXFileReference section */
 		C73E283822DB1CFB0075622B /* GoContacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoContacts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C73E283B22DB1CFB0075622B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C73E283D22DB1CFB0075622B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C73E284022DB1CFB0075622B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C73E284322DB1CFB0075622B /* GoContacts.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GoContacts.xcdatamodel; sourceTree = "<group>"; };
 		C73E284522DB1CFD0075622B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -100,7 +98,6 @@
 			isa = PBXGroup;
 			children = (
 				C73E283B22DB1CFB0075622B /* AppDelegate.swift */,
-				C73E283D22DB1CFB0075622B /* ViewController.swift */,
 				C73E283F22DB1CFB0075622B /* Main.storyboard */,
 				C73E284522DB1CFD0075622B /* Assets.xcassets */,
 				C73E284722DB1CFD0075622B /* LaunchScreen.storyboard */,
@@ -259,7 +256,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C73E283E22DB1CFB0075622B /* ViewController.swift in Sources */,
 				C73E283C22DB1CFB0075622B /* AppDelegate.swift in Sources */,
 				C73E284422DB1CFB0075622B /* GoContacts.xcdatamodeld in Sources */,
 			);
