@@ -16,6 +16,9 @@
 		C73E285F22DB1CFD0075622B /* GoContactsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73E285E22DB1CFD0075622B /* GoContactsUITests.swift */; };
 		C73E286E22DB1E550075622B /* ContactsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73E286D22DB1E550075622B /* ContactsListVC.swift */; };
 		C73E287122DB26820075622B /* ContactsListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73E287022DB26820075622B /* ContactsListViewCell.swift */; };
+		C73E287422DB27810075622B /* ApiRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73E287322DB27810075622B /* ApiRepository.swift */; };
+		C73E287822DB2A1D0075622B /* Contact+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73E287622DB2A1D0075622B /* Contact+CoreDataClass.swift */; };
+		C73E287922DB2A1D0075622B /* Contact+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73E287722DB2A1D0075622B /* Contact+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,9 @@
 		C73E286022DB1CFD0075622B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C73E286D22DB1E550075622B /* ContactsListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsListVC.swift; sourceTree = "<group>"; };
 		C73E287022DB26820075622B /* ContactsListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsListViewCell.swift; sourceTree = "<group>"; };
+		C73E287322DB27810075622B /* ApiRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRepository.swift; sourceTree = "<group>"; };
+		C73E287622DB2A1D0075622B /* Contact+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Contact+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C73E287722DB2A1D0075622B /* Contact+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Contact+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +107,8 @@
 		C73E283A22DB1CFB0075622B /* GoContacts */ = {
 			isa = PBXGroup;
 			children = (
+				C73E287A22DB2A240075622B /* Data */,
+				C73E287222DB275F0075622B /* ApiRespository */,
 				C73E286F22DB20290075622B /* ViewCells */,
 				C73E286C22DB1DED0075622B /* ViewControllers */,
 				C73E283B22DB1CFB0075622B /* AppDelegate.swift */,
@@ -145,6 +153,23 @@
 				C73E287022DB26820075622B /* ContactsListViewCell.swift */,
 			);
 			path = ViewCells;
+			sourceTree = "<group>";
+		};
+		C73E287222DB275F0075622B /* ApiRespository */ = {
+			isa = PBXGroup;
+			children = (
+				C73E287322DB27810075622B /* ApiRepository.swift */,
+			);
+			path = ApiRespository;
+			sourceTree = "<group>";
+		};
+		C73E287A22DB2A240075622B /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				C73E287622DB2A1D0075622B /* Contact+CoreDataClass.swift */,
+				C73E287722DB2A1D0075622B /* Contact+CoreDataProperties.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,7 +305,10 @@
 			files = (
 				C73E283C22DB1CFB0075622B /* AppDelegate.swift in Sources */,
 				C73E284422DB1CFB0075622B /* GoContacts.xcdatamodeld in Sources */,
+				C73E287922DB2A1D0075622B /* Contact+CoreDataProperties.swift in Sources */,
 				C73E286E22DB1E550075622B /* ContactsListVC.swift in Sources */,
+				C73E287422DB27810075622B /* ApiRepository.swift in Sources */,
+				C73E287822DB2A1D0075622B /* Contact+CoreDataClass.swift in Sources */,
 				C73E287122DB26820075622B /* ContactsListViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
