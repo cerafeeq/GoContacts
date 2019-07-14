@@ -12,6 +12,9 @@ import CoreData
 
 @objc(Contact)
 public class Contact: NSManagedObject {
+	let missingImage = "/images/missing.png"
+	let baseURL = "http://gojek-contacts-app.herokuapp.com"
+
 	func update(with jsonDictionary: [String: Any]) throws {
 		guard let id = jsonDictionary["id"] as? Int32,
 			let firstName = jsonDictionary["first_name"] as? String,
@@ -22,10 +25,15 @@ public class Contact: NSManagedObject {
 				throw NSError(domain: "", code: 100, userInfo: nil)
 		}
 
+		if (profilePic == missingImage) {
+			self.profilePic = baseURL + profilePic
+		} else {
+			self.profilePic = profilePic
+		}
+
 		self.firstName = firstName
 		self.id = id
 		self.lastName = lastName
 		self.favorite = favorite
-		self.profilePic = profilePic
 	}
 }
