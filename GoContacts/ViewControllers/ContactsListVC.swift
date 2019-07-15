@@ -15,11 +15,12 @@ class ContactsListVC: UITableViewController {
 
 	lazy var fetchedResultsController: NSFetchedResultsController<Contact> = {
 		let fetchRequest = NSFetchRequest<Contact>(entityName:"Contact")
-		fetchRequest.sortDescriptors = [NSSortDescriptor(key: "firstName", ascending:true)]
+		fetchRequest.sortDescriptors = [NSSortDescriptor(key: "sectionIdentifier", ascending:true),
+										NSSortDescriptor(key: "firstName", ascending:true)]
 
 		let controller = NSFetchedResultsController(fetchRequest: fetchRequest,
 													managedObjectContext: DataProvider.shared.viewContext,
-													sectionNameKeyPath: #keyPath(Contact.sectionIdentifier), cacheName: nil)
+													sectionNameKeyPath: "sectionIdentifier", cacheName: nil)
 		controller.delegate = self
 
 		do {

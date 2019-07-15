@@ -119,7 +119,7 @@ class AddEditProfileVC: UITableViewController {
 	}
 
 	@IBAction func doneTapped(_ sender: Any) {
-		var dictContact = [String: String]()
+		var dictContact = [String : String]()
 
 		var image: UIImage?
 
@@ -134,7 +134,6 @@ class AddEditProfileVC: UITableViewController {
 
 		if (isEdit) {
 			ApiRepository.shared.updateContact(id: contact!.id, dict: dictContact, image: image) { serverResponse, data in
-				print(serverResponse)
 				if (serverResponse == .Failure) {
 					DispatchQueue.main.async { [weak self] in
 						let ac = UIAlertController(title: "Contacts", message: "Failed to create contact", preferredStyle: .alert)
@@ -161,7 +160,6 @@ class AddEditProfileVC: UITableViewController {
 			}
 		} else {
 			ApiRepository.shared.createContact(dict: dictContact, image: image) { serverResponse, data in
-				print(serverResponse)
 				if (serverResponse == .Failure) {
 					DispatchQueue.main.async { [weak self] in
 						let ac = UIAlertController(title: "Contacts", message: "Failed to create contact", preferredStyle: .alert)

@@ -19,8 +19,10 @@ extension Contact {
 
 	@objc var sectionIdentifier: String {
 		get {
-			let firstChar = firstName?.character(at: 0)
-			return String(firstChar!)
+			guard let firstName = firstName, !firstName.isEmpty else { return ""}
+
+			let firstChar = firstName[firstName.startIndex]
+			return String(firstChar).uppercased()
 		}
 	}
 

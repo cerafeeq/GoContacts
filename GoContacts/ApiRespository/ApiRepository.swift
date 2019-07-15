@@ -17,7 +17,7 @@ class ApiRepository {
 	static let shared = ApiRepository()
 	
 	private let urlSession = URLSession.shared
-	private let baseURL = "http://192.168.1.167:3000"
+	private let baseURL = "http://gojek-contacts-app.herokuapp.com"
 	
 	func getContacts(completion: @escaping(_ jsonDict: [[String: Any]]?, _ error: Error?) -> ()) {
 		let contactsURL = URL(string: baseURL + "/contacts.json")!
