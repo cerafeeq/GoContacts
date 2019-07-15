@@ -17,12 +17,13 @@ class ContactsListViewCell: UITableViewCell {
 	override func awakeFromNib() {
 		super.awakeFromNib()
 		// Initialization code
+
+		self.thumbnailView.layer.cornerRadius = self.thumbnailView.frame.size.width / 2
+		self.thumbnailView.clipsToBounds = true
 	}
 	
 	override func setSelected(_ selected: Bool, animated: Bool) {
 		super.setSelected(selected, animated: animated)
-		
-		// Configure the view for the selected state
 	}
 	
 }

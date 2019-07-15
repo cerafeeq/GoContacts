@@ -78,7 +78,7 @@ class DataProvider {
 				}
 
 				do {
-					try contact.update(with: dict)
+					try contact.update(with: dict, imageUpdated: true)
 				} catch {
 					print("Error: \(error)\nThe quake object will be deleted.")
 					taskContext.delete(contact)
@@ -99,7 +99,7 @@ class DataProvider {
 		return successfull
 	}
 
-	func updateInLocalStore(params: [String : Any]) {
+	func updateInLocalStore(params: [String : Any], imageUpdated: Bool) {
 		guard let id = params["id"] as? Int32 else { return }
 
 		// fetch the Contact from Core Data
@@ -122,7 +122,7 @@ class DataProvider {
 		}
 
 		do {
-			try currentContact!.update(with: params)
+			try currentContact!.update(with: params, imageUpdated: imageUpdated)
 		} catch {
 			print("Error: \(error)\nThe quake object will be deleted.")
 		}
@@ -133,7 +133,7 @@ class DataProvider {
 			} catch {
 				print("Error: \(error)\nCould not save Core Data context.")
 			}
-			viewContext.reset() // Reset the context to clean up the cache and low the memory footprint.
+			viewContext.reset() // Reset the context to clean up the cache and low the im memory footprint.
 		}
 	}
 
@@ -142,7 +142,7 @@ class DataProvider {
 		let contact = Contact(context: viewContext)
 
 		do {
-			try contact.update(with: params)
+			try contact.update(with: params, imageUpdated: true)
 		} catch {
 			print("Error: \(error)\nThe quake object will be deleted.")
 			viewContext.delete(contact)

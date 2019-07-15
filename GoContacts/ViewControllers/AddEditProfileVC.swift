@@ -118,7 +118,7 @@ class AddEditProfileVC: UITableViewController {
 						return
 					}
 
-					DataProvider.shared.updateInLocalStore(params: jsonDict!)
+					DataProvider.shared.updateInLocalStore(params: jsonDict!, imageUpdated: self.isImageModified)
 
 					DispatchQueue.main.async { [weak self] in
 						self?.dismiss(animated: true, completion: nil)
