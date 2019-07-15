@@ -16,8 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	var coreDataStack = CoreDataStack.shared
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-		let vc = (window?.rootViewController as? UINavigationController)?.topViewController as? ContactsListVC
-		vc?.dataProvider = DataProvider(persistentContainer: coreDataStack.persistentContainer, repository: ApiRepository.shared)
 		
 		return true
 	}

@@ -11,7 +11,6 @@ import CoreData
 import SDWebImage
 
 class ContactsListVC: UITableViewController {
-	var dataProvider: DataProvider!
 	private let contactCellId = "ContactsListCell"
 
 	lazy var fetchedResultsController: NSFetchedResultsController<Contact> = {
@@ -19,7 +18,7 @@ class ContactsListVC: UITableViewController {
 		fetchRequest.sortDescriptors = [NSSortDescriptor(key: "firstName", ascending:true)]
 
 		let controller = NSFetchedResultsController(fetchRequest: fetchRequest,
-													managedObjectContext: dataProvider.viewContext,
+													managedObjectContext: DataProvider.shared.viewContext,
 													sectionNameKeyPath: #keyPath(Contact.sectionIdentifier), cacheName: nil)
 		controller.delegate = self
 
@@ -36,7 +35,7 @@ class ContactsListVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-		dataProvider.fetchContacts { (error) in
+		DataProvider.shared.fetchContacts { (error) in
 			// TODO: Handle errors
 		}
     }

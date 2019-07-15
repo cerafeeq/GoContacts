@@ -13,13 +13,15 @@ class DataProvider {
 	private let persistentContainer: NSPersistentContainer
 	private let repository: ApiRepository
 
-	var viewContext: NSManagedObjectContext {
-		return persistentContainer.viewContext
+	static let shared = DataProvider()
+
+	private init() {
+		self.persistentContainer = CoreDataStack.shared.persistentContainer
+		self.repository = ApiRepository.shared
 	}
 
-	init(persistentContainer: NSPersistentContainer, repository: ApiRepository) {
-		self.persistentContainer = persistentContainer
-		self.repository = repository
+	var viewContext: NSManagedObjectContext {
+		return persistentContainer.viewContext
 	}
 
 	func fetchContacts(completion: @escaping(Error?) -> Void) {
@@ -95,5 +97,63 @@ class DataProvider {
 			successfull = true
 		}
 		return successfull
+	}
+
+	func updateInLocalStore(params: [String : Any]) {
+		guard let id = params["id"] as? Int32 else { return }
+
+		// fetch the Contact from Core Data
+		let viewContext = CoreDataStack.shared.persistentContainer.viewContext
+		let contactFetch: NSFetchRequest<Contact> = Contact.fetchRequest()
+		contactFetch.predicate = NSPredicate(format: "%K == \(id)", #keyPath(Contact.id))
+
+		var currentContact: Contact?
+
+		do {
+			let results = try viewContext.fetch(contactFetch)
+			if results.count > 0 {
+				currentContact = results.first
+			} else {
+				return
+			}
+		} catch let error as NSError {
+			print("Fetch error: \(error) description: \(error.userInfo)")
+			return
+		}
+
+		do {
+			try currentContact!.update(with: params)
+		} catch {
+			print("Error: \(error)\nThe quake object will be deleted.")
+		}
+
+		if viewContext.hasChanges {
+			do {
+				try viewContext.save()
+			} catch {
+				print("Error: \(error)\nCould not save Core Data context.")
+			}
+			viewContext.reset() // Reset the context to clean up the cache and low the memory footprint.
+		}
+	}
+
+	func saveInLocalStore(params: [String : Any]) {
+		let viewContext = CoreDataStack.shared.persistentContainer.viewContext
+		let contact = Contact(context: viewContext)
+
+		do {
+			try contact.update(with: params)
+		} catch {
+			print("Error: \(error)\nThe quake object will be deleted.")
+			viewContext.delete(contact)
+		}
+		if viewContext.hasChanges {
+			do {
+				try viewContext.save()
+			} catch {
+				print("Error: \(error)\nCould not save Core Data context.")
+			}
+			viewContext.reset() // Reset the context to clean up the cache and low the memory footprint.
+		}
 	}
 }

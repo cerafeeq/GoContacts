@@ -118,7 +118,7 @@ class AddEditProfileVC: UITableViewController {
 						return
 					}
 
-					self.updateInLocalStore(params: jsonDict!)
+					DataProvider.shared.updateInLocalStore(params: jsonDict!)
 
 					DispatchQueue.main.async { [weak self] in
 						self?.dismiss(animated: true, completion: nil)
@@ -145,37 +145,13 @@ class AddEditProfileVC: UITableViewController {
 						return
 					}
 
-					self.saveInLocalStore(params: jsonDict!)
+					DataProvider.shared.saveInLocalStore(params: jsonDict!)
 
 					DispatchQueue.main.async { [weak self] in
 						self?.dismiss(animated: true, completion: nil)
 					}
 				}
 			}
-		}
-	}
-
-	func updateInLocalStore(params: [String : Any]) {
-	}
-
-	func saveInLocalStore(params: [String : Any]) {
-		let viewContext = CoreDataStack.shared.persistentContainer.viewContext
-		let contact = Contact(context: viewContext)
-
-		do {
-			try contact.update(with: params)
-		} catch {
-			print("Error: \(error)\nThe quake object will be deleted.")
-			viewContext.delete(contact)
-		}
-
-		if viewContext.hasChanges {
-			do {
-				try viewContext.save()
-			} catch {
-				print("Error: \(error)\nCould not save Core Data context.")
-			}
-			viewContext.reset() // Reset the context to clean up the cache and low the memory footprint.
 		}
 	}
 }
