@@ -55,7 +55,7 @@ class ViewProfileVC: UITableViewController {
     }
 
 	override func viewWillAppear(_ animated: Bool) {
-		setGradientBackground(for: viewCell!)
+		setGradientBackground(for: viewCell, with: tableView.bounds)
 
 		super.viewWillAppear(animated)
 	}
@@ -69,7 +69,7 @@ class ViewProfileVC: UITableViewController {
 
 		let dict = ["favorite" : contact.favorite]
 
-		ApiRepository.shared.updateContact(id: contact.id, dict: dict, image: nil) { serverResponse in
+		ApiRepository.shared.updateContact(id: contact.id, dict: dict, image: nil) { serverResponse, data in
 			// TODO: update the Core Data record
 		}
 	}

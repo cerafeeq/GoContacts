@@ -49,7 +49,7 @@ class AddEditProfileVC: UITableViewController {
     }
 
 	override func viewWillAppear(_ animated: Bool) {
-		setGradientBackground(for: viewCell)
+		setGradientBackground(for: viewCell, with: tableView.bounds)
 		super.viewWillAppear(animated)
 	}
 
@@ -99,7 +99,7 @@ class AddEditProfileVC: UITableViewController {
 		dictContact.updateValue(mobileField.text!, forKey: "phone_number")
 
 		if (isEdit) {
-			ApiRepository.shared.updateContact(id: contact!.id, dict: dictContact, image: image) { serverResponse in
+			ApiRepository.shared.updateContact(id: contact!.id, dict: dictContact, image: image) { serverResponse, data in
 				print(serverResponse)
 				if (serverResponse == .Failure) {
 					DispatchQueue.main.async { [weak self] in
@@ -108,13 +108,25 @@ class AddEditProfileVC: UITableViewController {
 						self?.present(ac, animated: true)
 					}
 				} else {
+					// if update is succesful, update in CoreData
+					var jsonDict : [String : Any]?
+
+					do {
+						let jsonObject = try JSONSerialization.jsonObject(with: data!, options: [])
+						jsonDict = jsonObject as? [String: Any]
+					} catch {
+						return
+					}
+
+					self.updateInLocalStore(params: jsonDict!)
+
 					DispatchQueue.main.async { [weak self] in
 						self?.dismiss(animated: true, completion: nil)
 					}
 				}
 			}
 		} else {
-			ApiRepository.shared.createContact(dict: dictContact, image: image) { serverResponse in
+			ApiRepository.shared.createContact(dict: dictContact, image: image) { serverResponse, data in
 				print(serverResponse)
 				if (serverResponse == .Failure) {
 					DispatchQueue.main.async { [weak self] in
@@ -123,11 +135,47 @@ class AddEditProfileVC: UITableViewController {
 						self?.present(ac, animated: true)
 					}
 				} else {
+					//  If upload is successful, add contact to CoreData
+					var jsonDict : [String : Any]?
+
+					do {
+						let jsonObject = try JSONSerialization.jsonObject(with: data!, options: [])
+						jsonDict = jsonObject as? [String: Any]
+					} catch {
+						return
+					}
+
+					self.saveInLocalStore(params: jsonDict!)
+
 					DispatchQueue.main.async { [weak self] in
 						self?.dismiss(animated: true, completion: nil)
 					}
 				}
 			}
+		}
+	}
+
+	func updateInLocalStore(params: [String : Any]) {
+	}
+
+	func saveInLocalStore(params: [String : Any]) {
+		let viewContext = CoreDataStack.shared.persistentContainer.viewContext
+		let contact = Contact(context: viewContext)
+
+		do {
+			try contact.update(with: params)
+		} catch {
+			print("Error: \(error)\nThe quake object will be deleted.")
+			viewContext.delete(contact)
+		}
+
+		if viewContext.hasChanges {
+			do {
+				try viewContext.save()
+			} catch {
+				print("Error: \(error)\nCould not save Core Data context.")
+			}
+			viewContext.reset() // Reset the context to clean up the cache and low the memory footprint.
 		}
 	}
 }

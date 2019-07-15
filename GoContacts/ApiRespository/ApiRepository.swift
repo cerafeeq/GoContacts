@@ -69,7 +69,7 @@ class ApiRepository {
 		}.resume()
 	}
 
-	func createContact(dict: [String: Any], image : UIImage?, completion: @escaping (ServerResponse) -> ()) {
+	func createContact(dict: [String: Any], image : UIImage?, completion: @escaping (ServerResponse, Data?) -> ()) {
 		guard let createURL = URL(string: baseURL + "/contacts.json") else { return }
 		var request = URLRequest(url: createURL)
 		request.httpMethod = "POST"
@@ -96,15 +96,15 @@ class ApiRepository {
 
 			if let httpResponse = response as? HTTPURLResponse {
 				if (httpResponse.statusCode == 201) {
-					completion(ServerResponse.Success)
+					completion(ServerResponse.Success, data)
 				} else {
-					completion(ServerResponse.Failure)
+					completion(ServerResponse.Failure, nil)
 				}
 			}
 		}.resume()
 	}
 
-	func updateContact(id: Int32, dict: [String: Any], image : UIImage?, completion: @escaping (ServerResponse) -> ()) {
+	func updateContact(id: Int32, dict: [String: Any], image : UIImage?, completion: @escaping (ServerResponse, Data?) -> ()) {
 		guard let updateURL = URL(string: baseURL + "/contacts/\(id).json") else { return }
 		var request = URLRequest(url: updateURL)
 		request.httpMethod = "PUT"
@@ -131,9 +131,9 @@ class ApiRepository {
 
 			if let httpResponse = response as? HTTPURLResponse {
 				if (httpResponse.statusCode == 200) {
-					completion(ServerResponse.Success)
+					completion(ServerResponse.Success, data)
 				} else {
-					completion(ServerResponse.Failure)
+					completion(ServerResponse.Failure, nil)
 				}
 			}
 		}.resume()
