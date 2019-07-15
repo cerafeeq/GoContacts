@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol ContactSyncDelegate {
+	func contactDidChange(params: [String: Any])
+}
+
 class AddEditProfileVC: UITableViewController {
 	let fieldCount = 5
 	let sectionCount = 1
@@ -25,6 +29,8 @@ class AddEditProfileVC: UITableViewController {
 	@IBOutlet var emailField: UITextField!
 	@IBOutlet var viewCell: UITableViewCell!
 	@IBOutlet var doneBtn: UIBarButtonItem!
+
+	var delegate: ContactSyncDelegate!
 
 	var textFields: [UITextField]!
 
@@ -56,8 +62,7 @@ class AddEditProfileVC: UITableViewController {
 		lastNameField.text = contact.lastName
 		mobileField.text = contact.phoneNumber
 		emailField.text = contact.email
-		profileImageView.sd_setImage(with: URL(string: contact.profilePic!), placeholderImage: UIImage(named: "placeholder"))
-    }
+	}
 
 	override func viewWillAppear(_ animated: Bool) {
 		setGradientBackground(for: viewCell, with: tableView.bounds)
@@ -147,10 +152,10 @@ class AddEditProfileVC: UITableViewController {
 						return
 					}
 
-					DataProvider.shared.updateInLocalStore(params: jsonDict!, imageUpdated: self.isImageModified)
-
 					DispatchQueue.main.async { [weak self] in
+						DataProvider.shared.updateInLocalStore(params: jsonDict!, imageUpdated: self!.isImageModified)
 						self?.dismiss(animated: true, completion: nil)
+						self?.delegate.contactDidChange(params: jsonDict!)
 					}
 				}
 			}
@@ -174,9 +179,8 @@ class AddEditProfileVC: UITableViewController {
 						return
 					}
 
-					DataProvider.shared.saveInLocalStore(params: jsonDict!)
-
 					DispatchQueue.main.async { [weak self] in
+						DataProvider.shared.saveInLocalStore(params: jsonDict!)
 						self?.dismiss(animated: true, completion: nil)
 					}
 				}

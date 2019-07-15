@@ -95,6 +95,7 @@ class ViewProfileVC: UITableViewController {
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if let nc = segue.destination as? UINavigationController, let vc = nc.topViewController as? AddEditProfileVC  {
 			vc.contact = contact
+			vc.delegate = self
 		}
 	}
 
@@ -107,4 +108,22 @@ class ViewProfileVC: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return fieldCount
     }
+}
+
+extension ViewProfileVC: ContactSyncDelegate {
+	func contactDidChange(params: [String: Any]) {
+		guard let firstName = params["first_name"] as? String,
+			let lastName = params["last_name"] as? String,
+			let phoneNumber = params["phone_number"] as? String,
+			let email = params["email"] as? String,
+			let profilePic = params["profile_pic"] as? String
+			else {
+				return
+		}
+
+		nameLbl.text = firstName + " " + lastName
+		phoneLbl.text = phoneNumber
+		emailLbl.text = email
+		profileImageView.sd_setImage(with: URL(string: profilePic), placeholderImage: UIImage(named: "placeholder"))
+	}
 }
