@@ -119,14 +119,23 @@
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZoG-jh-8oM">
                                                             <rect key="frame" x="0.0" y="0.0" width="72" height="44"/>
                                                             <state key="normal" image="message"/>
+                                                            <connections>
+                                                                <action selector="messageTapped:" destination="V8C-Sf-2yF" eventType="touchUpInside" id="P0S-lL-pqd"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FTW-2s-Qsm">
                                                             <rect key="frame" x="72" y="0.0" width="71.5" height="44"/>
                                                             <state key="normal" image="call"/>
+                                                            <connections>
+                                                                <action selector="callTapped:" destination="V8C-Sf-2yF" eventType="touchUpInside" id="YxM-bf-RNX"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RnB-9I-62h">
                                                             <rect key="frame" x="143.5" y="0.0" width="72" height="44"/>
-                                                            <state key="normal" image="message"/>
+                                                            <state key="normal" image="email"/>
+                                                            <connections>
+                                                                <action selector="emailTapped:" destination="V8C-Sf-2yF" eventType="touchUpInside" id="esl-wB-nLS"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ykn-u3-yaw">
                                                             <rect key="frame" x="215.5" y="0.0" width="71.5" height="44"/>
@@ -496,12 +505,13 @@
     <resources>
         <image name="call" width="45" height="44"/>
         <image name="camera" width="41" height="41"/>
+        <image name="email" width="45" height="44"/>
         <image name="favorite" width="44" height="44"/>
         <image name="favorite_selected" width="44" height="44"/>
         <image name="message" width="44" height="44"/>
         <image name="placeholder" width="126" height="126"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="k3g-O7-Erj"/>
+        <segue reference="SJN-rX-ILR"/>
     </inferredMetricsTieBreakers>
 </document>

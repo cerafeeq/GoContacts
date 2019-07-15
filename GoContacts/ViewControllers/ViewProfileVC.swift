@@ -74,6 +74,24 @@ class ViewProfileVC: UITableViewController {
 		}
 	}
 
+	@IBAction func messageTapped(_ sender: Any) {
+		guard let phoneNumber = self.contact?.phoneNumber else { return }
+
+		UIApplication.shared.open(URL(string: "sms:" + phoneNumber)!, options: [:], completionHandler: nil)
+	}
+
+	@IBAction func callTapped(_ sender: Any) {
+		guard let phoneNumber = self.contact?.phoneNumber else { return }
+
+		UIApplication.shared.open(URL(string: "tel://" + phoneNumber)!, options: [:], completionHandler: nil)
+	}
+
+	@IBAction func emailTapped(_ sender: Any) {
+		guard let email = self.contact?.email else { return }
+
+		UIApplication.shared.open(URL(string: "mailto:" + email)!, options: [:], completionHandler: nil)
+	}
+
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if let nc = segue.destination as? UINavigationController, let vc = nc.topViewController as? AddEditProfileVC  {
 			vc.contact = contact
