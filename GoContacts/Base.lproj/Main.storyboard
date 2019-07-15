@@ -385,7 +385,7 @@
                                                             <rect key="frame" x="100" y="0.0" width="235" height="30"/>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits"/>
+                                                            <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                                         </textField>
                                                     </subviews>
                                                 </stackView>
@@ -420,7 +420,7 @@
                                                             <rect key="frame" x="100" y="0.0" width="235" height="30"/>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits"/>
+                                                            <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                                         </textField>
                                                     </subviews>
                                                 </stackView>
@@ -453,6 +453,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="doneBtn" destination="c14-j0-tiY" id="I2Q-IJ-9fg"/>
                         <outlet property="emailField" destination="dbH-9p-k04" id="74y-e7-Rto"/>
                         <outlet property="firstNameField" destination="MqZ-hd-7oN" id="5tQ-rY-IoE"/>
                         <outlet property="lastNameField" destination="2RV-75-386" id="Tuc-Zs-lMU"/>

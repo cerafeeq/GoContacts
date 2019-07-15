@@ -24,6 +24,9 @@ class AddEditProfileVC: UITableViewController {
 	@IBOutlet var mobileField: UITextField!
 	@IBOutlet var emailField: UITextField!
 	@IBOutlet var viewCell: UITableViewCell!
+	@IBOutlet var doneBtn: UIBarButtonItem!
+
+	var textFields: [UITextField]!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -34,6 +37,14 @@ class AddEditProfileVC: UITableViewController {
 		let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
 		profileImageView.isUserInteractionEnabled = true
 		profileImageView.addGestureRecognizer(tapGestureRecognizer)
+
+		doneBtn.isEnabled = false
+
+		textFields = [firstNameField, lastNameField, emailField, mobileField]
+
+		for textField in textFields {
+			textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+		}
 
 		guard let contact = contact else {
 			return
@@ -79,6 +90,24 @@ class AddEditProfileVC: UITableViewController {
     }
 
 	//
+
+	@IBAction func textFieldDidChange(_ sender: UITextField) {
+		doneBtn.isEnabled = false
+		guard let first = textFields[0].text, first != "" else {
+			return
+		}
+		guard let second = textFields[1].text, second != "" else {
+			return
+		}
+		guard let third = textFields[2].text, third != "" else {
+			return
+		}
+		guard let forth = textFields[3].text, forth != "" else {
+			return
+		}
+
+		doneBtn.isEnabled = true
+	}
 
 	@IBAction func cancelTapped(_ sender: Any) {
 		self.dismiss(animated: true, completion: nil)
@@ -165,6 +194,10 @@ extension AddEditProfileVC: UINavigationControllerDelegate, UIImagePickerControl
 		let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
 		self.profileImageView.image = image
 		self.isImageModified = true
+
+		if (isEdit) {
+			doneBtn.isEnabled = true
+		}
 
 		dismiss(animated: true, completion: nil)
 	}
