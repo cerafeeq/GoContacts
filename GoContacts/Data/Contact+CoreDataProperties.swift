@@ -17,14 +17,14 @@ extension Contact {
         return NSFetchRequest<Contact>(entityName: "Contact")
     }
 
-	@objc var sectionIdentifier: String {
+	/*@objc var sectionIdentifier: String {
 		get {
 			guard let firstName = firstName, !firstName.isEmpty else { return ""}
 
 			let firstChar = firstName[firstName.startIndex]
 			return String(firstChar).uppercased()
 		}
-	}
+	}*/
 
 	@NSManaged public var firstName: String?
     @NSManaged public var lastName: String?
@@ -33,5 +33,5 @@ extension Contact {
     @NSManaged public var id: Int32
     @NSManaged public var profilePic: String?
     @NSManaged public var favorite: Bool
-
+	@NSManaged public var sectionIdentifier: String?
 }

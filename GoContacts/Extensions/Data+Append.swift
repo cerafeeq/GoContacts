@@ -10,7 +10,7 @@ import Foundation
 
 extension Data {
 	mutating func append(_ string: String) {
-		if let data = string.data(using: .utf8) {
+		if let data = string.data(using: .nonLossyASCII, allowLossyConversion: false) {
 			append(data)
 		}
 	}

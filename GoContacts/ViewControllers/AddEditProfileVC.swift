@@ -133,7 +133,7 @@ class AddEditProfileVC: UITableViewController {
 		dictContact.updateValue(mobileField.text!, forKey: "phone_number")
 
 		if (isEdit) {
-			ApiRepository.shared.updateContact(id: contact!.id, dict: dictContact, image: image) { serverResponse, data in
+			ApiRepository.shared.updateContact(id: contact!.id, params: dictContact, image: image) { serverResponse, data in
 				if (serverResponse == .Failure) {
 					DispatchQueue.main.async { [weak self] in
 						let ac = UIAlertController(title: "Contacts", message: "Failed to create contact", preferredStyle: .alert)
@@ -159,7 +159,7 @@ class AddEditProfileVC: UITableViewController {
 				}
 			}
 		} else {
-			ApiRepository.shared.createContact(dict: dictContact, image: image) { serverResponse, data in
+			ApiRepository.shared.createContact(params: dictContact, image: image) { serverResponse, data in
 				if (serverResponse == .Failure) {
 					DispatchQueue.main.async { [weak self] in
 						let ac = UIAlertController(title: "Contacts", message: "Failed to create contact", preferredStyle: .alert)

@@ -1,0 +1,18 @@
+[
+	{
+		"id": 35,
+		"first_name": "Apoorva",
+		"last_name": "K",
+		"profile_pic": "https://go-contacts.s3-ap-south-1.amazonaws.com/contacts/profile_pics/000/000/035/original/photogUCZqrE5hCXt.jpeg?1563175285",
+		"favorite": true,
+		"url": "http://localhost:3000/contacts/35.json"
+	},
+	{
+		"id": 46,
+		"first_name": "Hema",
+		"last_name": "PK",
+		"profile_pic": "/images/missing.png",
+		"favorite": true,
+		"url": "http://localhost:3000/contacts/46.json"
+	}
+]

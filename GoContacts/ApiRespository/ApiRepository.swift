@@ -16,8 +16,8 @@ enum ServerResponse {
 class ApiRepository {
 	static let shared = ApiRepository()
 	
-	private let urlSession = URLSession.shared
-	private let baseURL = "http://gojek-contacts-app.herokuapp.com"
+	let urlSession = URLSession.shared
+	private let baseURL = "http://localhost:3000"
 	
 	func getContacts(completion: @escaping(_ jsonDict: [[String: Any]]?, _ error: Error?) -> ()) {
 		let contactsURL = URL(string: baseURL + "/contacts.json")!
@@ -69,7 +69,7 @@ class ApiRepository {
 		}.resume()
 	}
 
-	func createContact(dict: [String: Any], image : UIImage?, completion: @escaping (ServerResponse, Data?) -> ()) {
+	func createContact(params: [String: Any], image : UIImage?, completion: @escaping (ServerResponse, Data?) -> ()) {
 		guard let createURL = URL(string: baseURL + "/contacts.json") else { return }
 		var request = URLRequest(url: createURL)
 		request.httpMethod = "POST"
@@ -85,7 +85,7 @@ class ApiRepository {
 
 		request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
 
-		let httpBody = createHttpBody(withParameters: dict, media: mediaArray, boundary: boundary)
+		let httpBody = createHttpBody(withParameters: params, media: mediaArray, boundary: boundary)
 		request.httpBody = httpBody
 
 		urlSession.dataTask(with: request) { (data, response, error) in
@@ -104,7 +104,7 @@ class ApiRepository {
 		}.resume()
 	}
 
-	func updateContact(id: Int32, dict: [String: Any], image : UIImage?, completion: @escaping (ServerResponse, Data?) -> ()) {
+	func updateContact(id: Int32, params: [String: Any], image : UIImage?, completion: @escaping (ServerResponse, Data?) -> ()) {
 		guard let updateURL = URL(string: baseURL + "/contacts/\(id).json") else { return }
 		var request = URLRequest(url: updateURL)
 		request.httpMethod = "PUT"
@@ -120,7 +120,7 @@ class ApiRepository {
 
 		request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
 
-		let httpBody = createHttpBody(withParameters: dict, media: mediaArray, boundary: boundary)
+		let httpBody = createHttpBody(withParameters: params, media: mediaArray, boundary: boundary)
 		request.httpBody = httpBody
 
 		urlSession.dataTask(with: request) { (data, response, error) in

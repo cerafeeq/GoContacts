@@ -7,28 +7,108 @@
 //
 
 import XCTest
+var app: XCUIApplication!
 
 class GoContactsUITests: XCTestCase {
 
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+		app = XCUIApplication()
+		app.launch()
+	}
 
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
+	func testNewContact() {
+		let app = XCUIApplication()
+		app.launch()
+		app.buttons["Add"].tap()
 
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        XCUIApplication().launch()
+		let firstNameField = app.textFields["First Name"]
+		let firstName = "Henry"
+		firstNameField.tap()
+		firstNameField.typeText(firstName)
 
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-    }
+		let lastNameField = app.textFields["Last Name"]
+		let lastName = "Mathew"
+		lastNameField.tap()
+		lastNameField.typeText(lastName)
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+		let mobileField = app.textFields["Mobile"]
+		let mobile = "+971 569901801"
+		mobileField.tap()
+		mobileField.typeText(mobile)
 
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
+		let emailField = app.textFields["Email"]
+		let email = "test@gmail.com"
+		emailField.tap()
+		emailField.typeText(email)
 
+		app.buttons["Done"].tap()
+	}
+
+	func testNewContactCancelTap() {
+		let app = XCUIApplication()
+		app.launch()
+		app.buttons["Add"].tap()
+		app.buttons["Cancel"].tap()
+	}
+
+	func testContact() {
+		let app = XCUIApplication()
+		app.launch()
+		let cell = app.tables.cells.element(boundBy: 2)
+		cell.tap()
+	}
+
+	func testContactFavoriteTap() {
+		let app = XCUIApplication()
+		app.launch()
+		let cell = app.tables.cells.element(boundBy: 2)
+		cell.tap()
+		app.buttons["Favorite"].tap()
+	}
+
+	func testContactCallTap() {
+		let app = XCUIApplication()
+		app.launch()
+		let cell = app.tables.cells.element(boundBy: 2)
+		cell.tap()
+		app.buttons["Call"].tap()
+	}
+
+	func testContactMessageTap() {
+		let app = XCUIApplication()
+		app.launch()
+		let cell = app.tables.cells.element(boundBy: 2)
+		cell.tap()
+		app.buttons["Message"].tap()
+	}
+
+	func testContactEmailTap() {
+		let app = XCUIApplication()
+		app.launch()
+		let cell = app.tables.cells.element(boundBy: 2)
+		cell.tap()
+		app.buttons["Email"].tap()
+	}
+
+	func testEditContact() {
+		let app = XCUIApplication()
+		app.launch()
+		let cell = app.tables.cells.element(boundBy: 3)
+		cell.tap()
+		app.buttons["Edit"].tap()
+
+		let mobileField = app.textFields["Mobile"]
+		let mobile = "+971 569901801"
+		mobileField.buttons["Clear text"].tap()
+		mobileField.tap()
+		mobileField.typeText(mobile)
+
+		let emailField = app.textFields["Email"]
+		let email = "test@gmail.com"
+		emailField.buttons["Clear text"].tap()
+		emailField.tap()
+		emailField.typeText(email)
+
+		app.buttons["Done"].tap()
+	}
 }

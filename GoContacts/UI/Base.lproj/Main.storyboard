@@ -118,6 +118,7 @@
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZoG-jh-8oM">
                                                             <rect key="frame" x="0.0" y="0.0" width="72" height="44"/>
+                                                            <accessibility key="accessibilityConfiguration" identifier="Message"/>
                                                             <state key="normal" image="message"/>
                                                             <connections>
                                                                 <action selector="messageTapped:" destination="V8C-Sf-2yF" eventType="touchUpInside" id="P0S-lL-pqd"/>
@@ -125,6 +126,7 @@
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FTW-2s-Qsm">
                                                             <rect key="frame" x="72" y="0.0" width="71.5" height="44"/>
+                                                            <accessibility key="accessibilityConfiguration" identifier="Call"/>
                                                             <state key="normal" image="call"/>
                                                             <connections>
                                                                 <action selector="callTapped:" destination="V8C-Sf-2yF" eventType="touchUpInside" id="YxM-bf-RNX"/>
@@ -132,6 +134,7 @@
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RnB-9I-62h">
                                                             <rect key="frame" x="143.5" y="0.0" width="72" height="44"/>
+                                                            <accessibility key="accessibilityConfiguration" identifier="Email"/>
                                                             <state key="normal" image="email"/>
                                                             <connections>
                                                                 <action selector="emailTapped:" destination="V8C-Sf-2yF" eventType="touchUpInside" id="esl-wB-nLS"/>
@@ -139,6 +142,7 @@
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ykn-u3-yaw">
                                                             <rect key="frame" x="215.5" y="0.0" width="71.5" height="44"/>
+                                                            <accessibility key="accessibilityConfiguration" identifier="Favorite"/>
                                                             <state key="normal" image="favorite"/>
                                                             <connections>
                                                                 <action selector="favoriteTapped:" destination="V8C-Sf-2yF" eventType="touchUpInside" id="oxn-H3-PMX"/>
@@ -171,13 +175,13 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mobile" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ye7-Au-JqV">
                                                             <rect key="frame" x="0.0" y="0.0" width="80" height="50.5"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="80" id="CeI-4O-Ojw"/>
+                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="pxC-0Q-4hl"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJu-dC-S8X">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJu-dC-S8X">
                                                             <rect key="frame" x="100" y="0.0" width="235" height="50.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <nil key="textColor"/>
@@ -206,13 +210,13 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lgi-b9-WsC">
                                                             <rect key="frame" x="0.0" y="0.0" width="80" height="50.5"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="80" id="nfm-aD-J8J"/>
+                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="7VE-ZK-pZa"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ho-wI-q6A">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ho-wI-q6A">
                                                             <rect key="frame" x="100" y="0.0" width="235" height="50.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <nil key="textColor"/>
@@ -276,6 +280,9 @@
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="vJL-oh-30b">
                                                     <rect key="frame" x="124" y="24" width="127" height="127"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="Camera">
+                                                        <accessibilityTraits key="traits" button="YES" image="YES"/>
+                                                    </accessibility>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="127" id="11T-no-Q1G"/>
                                                         <constraint firstAttribute="width" constant="127" id="CvK-aO-jc6"/>
@@ -311,8 +318,9 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MqZ-hd-7oN">
+                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="MqZ-hd-7oN">
                                                             <rect key="frame" x="100" y="0.0" width="235" height="30"/>
+                                                            <accessibility key="accessibilityConfiguration" identifier="First Name"/>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
@@ -346,8 +354,9 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2RV-75-386">
+                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="2RV-75-386">
                                                             <rect key="frame" x="100" y="0.0" width="235" height="30"/>
+                                                            <accessibility key="accessibilityConfiguration" identifier="Last Name"/>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
@@ -381,8 +390,9 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZHv-V8-bOC">
+                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="ZHv-V8-bOC">
                                                             <rect key="frame" x="100" y="0.0" width="235" height="30"/>
+                                                            <accessibility key="accessibilityConfiguration" identifier="Mobile"/>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
@@ -416,8 +426,9 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dbH-9p-k04">
+                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="dbH-9p-k04">
                                                             <rect key="frame" x="100" y="0.0" width="235" height="30"/>
+                                                            <accessibility key="accessibilityConfiguration" identifier="Email"/>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>

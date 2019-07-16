@@ -69,7 +69,7 @@ class ViewProfileVC: UITableViewController {
 
 		let dict = ["favorite" : contact.favorite]
 
-		ApiRepository.shared.updateContact(id: contact.id, dict: dict, image: nil) { serverResponse, data in
+		ApiRepository.shared.updateContact(id: contact.id, params: dict, image: nil) { serverResponse, data in
 			// TODO: update the Core Data record
 		}
 	}

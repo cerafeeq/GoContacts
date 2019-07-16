@@ -27,6 +27,10 @@ public class Contact: NSManagedObject {
 		self.lastName = lastName
 		self.favorite = favorite
 
+		if !firstName.isEmpty {
+			self.sectionIdentifier = String(firstName[firstName.startIndex]).uppercased()
+		}
+
 		if (!imageUpdated) {
 			return
 		}
