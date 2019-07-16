@@ -37,7 +37,11 @@ class ContactsListVC: UITableViewController {
         super.viewDidLoad()
 
 		DataProvider.shared.fetchContacts { (error) in
-			// TODO: Handle errors
+			guard let _ = error else { return }
+
+			let alert  = UIAlertController(title: "Warning", message: "Unable to fetch contacts, could be a network error", preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+			self.present(alert, animated: true, completion: nil)
 		}
     }
 

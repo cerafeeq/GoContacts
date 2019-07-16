@@ -31,6 +31,8 @@ class ViewProfileVC: UITableViewController {
 		guard let contact = self.contact else { return }
 
 		nameLbl.text = contact.firstName! + " " + contact.lastName!
+		self.phoneLbl.text = self.contact!.phoneNumber
+		self.emailLbl.text = self.contact!.email
 
 		profileImageView.sd_setImage(with: URL(string: contact.profilePic!), placeholderImage: UIImage(named: "placeholder"))
 
@@ -50,6 +52,9 @@ class ViewProfileVC: UITableViewController {
 			DispatchQueue.main.async {
 				self.phoneLbl.text = self.contact!.phoneNumber
 				self.emailLbl.text = self.contact!.email
+
+				// update in Core Data
+				DataProvider.shared.updateInLocalStore(params: jsonDictionary, imageUpdated: false)
 			}
 		}
     }

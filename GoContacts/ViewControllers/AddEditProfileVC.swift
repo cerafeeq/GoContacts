@@ -107,7 +107,7 @@ class AddEditProfileVC: UITableViewController {
 		}
 		else
 		{
-			let alert  = UIAlertController(title: "Warning", message: "You don't have camera", preferredStyle: .alert)
+			let alert  = UIAlertController(title: "Warning", message: "You do not have camera", preferredStyle: .alert)
 			alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
 			self.present(alert, animated: true, completion: nil)
 		}
