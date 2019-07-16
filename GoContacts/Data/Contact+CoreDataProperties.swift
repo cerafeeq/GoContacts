@@ -10,21 +10,11 @@
 import Foundation
 import CoreData
 
-
 extension Contact {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Contact> {
         return NSFetchRequest<Contact>(entityName: "Contact")
     }
-
-	/*@objc var sectionIdentifier: String {
-		get {
-			guard let firstName = firstName, !firstName.isEmpty else { return ""}
-
-			let firstChar = firstName[firstName.startIndex]
-			return String(firstChar).uppercased()
-		}
-	}*/
 
 	@NSManaged public var firstName: String?
     @NSManaged public var lastName: String?

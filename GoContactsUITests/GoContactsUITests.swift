@@ -93,18 +93,20 @@ class GoContactsUITests: XCTestCase {
 	func testEditContact() {
 		let app = XCUIApplication()
 		app.launch()
-		let cell = app.tables.cells.element(boundBy: 3)
+		let cell = app.tables.cells.element(boundBy: 2)
 		cell.tap()
 		app.buttons["Edit"].tap()
 
 		let mobileField = app.textFields["Mobile"]
 		let mobile = "+971 569901801"
+		mobileField.tap()
 		mobileField.buttons["Clear text"].tap()
 		mobileField.tap()
 		mobileField.typeText(mobile)
 
 		let emailField = app.textFields["Email"]
 		let email = "test@gmail.com"
+		emailField.tap()
 		emailField.buttons["Clear text"].tap()
 		emailField.tap()
 		emailField.typeText(email)

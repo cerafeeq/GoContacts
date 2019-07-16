@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ContactSyncDelegate {
-	func contactDidChange(params: [String: Any])
+	func contactDidChange(params: [String: Any], imageModified: Bool)
 }
 
 class AddEditProfileVC: UITableViewController {
@@ -154,7 +154,7 @@ class AddEditProfileVC: UITableViewController {
 					DispatchQueue.main.async { [weak self] in
 						DataProvider.shared.updateInLocalStore(params: jsonDict!, imageUpdated: self!.isImageModified)
 						self?.dismiss(animated: true, completion: nil)
-						self?.delegate.contactDidChange(params: jsonDict!)
+						self?.delegate.contactDidChange(params: jsonDict!, imageModified: self!.isImageModified)
 					}
 				}
 			}

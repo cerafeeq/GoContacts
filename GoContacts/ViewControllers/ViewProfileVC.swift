@@ -111,7 +111,7 @@ class ViewProfileVC: UITableViewController {
 }
 
 extension ViewProfileVC: ContactSyncDelegate {
-	func contactDidChange(params: [String: Any]) {
+	func contactDidChange(params: [String: Any], imageModified: Bool) {
 		guard let firstName = params["first_name"] as? String,
 			let lastName = params["last_name"] as? String,
 			let phoneNumber = params["phone_number"] as? String,
@@ -124,6 +124,11 @@ extension ViewProfileVC: ContactSyncDelegate {
 		nameLbl.text = firstName + " " + lastName
 		phoneLbl.text = phoneNumber
 		emailLbl.text = email
+
+		if (!imageModified) {
+			return
+		}
+
 		profileImageView.sd_setImage(with: URL(string: profilePic), placeholderImage: UIImage(named: "placeholder"))
 	}
 }

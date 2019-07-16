@@ -25,7 +25,8 @@ class ApiRepositoryTests: XCTestCase {
 		let session = URLSessionMock()
 		repository.urlSession = session
 
-		guard let path = Bundle.main.path(forResource: "mockData1", ofType: "json") else { return }
+		let bundle = Bundle(for: type(of: self))
+		guard let path = bundle.path(forResource: "mockData1", ofType: "json") else { return }
 
 		do {
 			let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
@@ -34,16 +35,21 @@ class ApiRepositoryTests: XCTestCase {
 			print("Error: \(error)")
 		}
 
-		repository.getContacts { (jsonDictionary, error) in
-			XCTAssert(jsonDictionary!.count == 2)
+		var results: [[String : Any]]?
+
+		repository.getContacts { (jsonDict, error) in
+			results = jsonDict
 		}
+
+		XCTAssert(results!.count == 2)
 	}
 
 	func testGetContact() {
 		let session = URLSessionMock()
 		repository.urlSession = session
 
-		guard let path = Bundle.main.path(forResource: "mockData1", ofType: "json") else { return }
+		let bundle = Bundle(for: type(of: self))
+		guard let path = bundle.path(forResource: "mockData2", ofType: "json") else { return }
 
 		do {
 			let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
@@ -52,24 +58,53 @@ class ApiRepositoryTests: XCTestCase {
 			print("Error: \(error)")
 		}
 
+		var result: [String : Any]?
+
 		repository.getContact(id: 35) { (jsonDict, error) in
-			XCTAssertEqual(jsonDict!["id"] as! Int32, 35)
+			result = jsonDict
 		}
+
+		XCTAssertEqual(result!["id"] as! Int32, 35)
 	}
 
 	func testCreateContact() {
+		let session = URLSessionMock()
+		repository.urlSession = session
 
+		var params = [String : String]()
+		params.updateValue("Shwan", forKey: "first_name")
+		params.updateValue("Swart", forKey: "last_name")
+		params.updateValue("+971 78491941", forKey: "phone_number")
+		params.updateValue("shawn@hope.com", forKey: "email")
+
+		session.response = HTTPURLResponse(url: URL(string: Constants.baseURL)!, statusCode: 201, httpVersion: nil, headerFields: [:])
+
+		var response: ServerResponse?
+
+		repository.createContact(params: params, image: nil) { (serverResponse, data) in
+			response = serverResponse
+		}
+
+		XCTAssertEqual(response, ServerResponse.Success)
 	}
 
 	func testUpdateContact() {
+		let session = URLSessionMock()
+		repository.urlSession = session
 
+		var params = [String : String]()
+		params.updateValue("+971 78491945", forKey: "phone_number")
+		params.updateValue("shawn@hopenext.com", forKey: "email")
+
+		session.response = HTTPURLResponse(url: URL(string: Constants.baseURL)!, statusCode: 200, httpVersion: nil, headerFields: [:])
+
+		var response: ServerResponse?
+
+		repository.updateContact(id: 35, params: params, image: nil) { (serverResponse, data) in
+			response = serverResponse
+		}
+
+		XCTAssertEqual(response, ServerResponse.Success)
 	}
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
 
 }
