@@ -22,14 +22,38 @@ class ApiRepositoryTests: XCTestCase {
 	}
 
 	func testGetContacts() {
+		let session = URLSessionMock()
+		repository.urlSession = session
+
+		guard let path = Bundle.main.path(forResource: "mockData1", ofType: "json") else { return }
+
+		do {
+			let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+			session.data = data
+		} catch {
+			print("Error: \(error)")
+		}
+
 		repository.getContacts { (jsonDictionary, error) in
-			XCTAssert(jsonDictionary!.count > 0)
+			XCTAssert(jsonDictionary!.count == 2)
 		}
 	}
 
 	func testGetContact() {
-		repository.getContact(id: 46) { (jsonDict, error) in
-			// XCTAssertEqual(jsonDict!["id"] as! Int32, 46)
+		let session = URLSessionMock()
+		repository.urlSession = session
+
+		guard let path = Bundle.main.path(forResource: "mockData1", ofType: "json") else { return }
+
+		do {
+			let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+			session.data = data
+		} catch {
+			print("Error: \(error)")
+		}
+
+		repository.getContact(id: 35) { (jsonDict, error) in
+			XCTAssertEqual(jsonDict!["id"] as! Int32, 35)
 		}
 	}
 

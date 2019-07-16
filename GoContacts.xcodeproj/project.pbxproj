@@ -33,6 +33,8 @@
 		C73E287922DB2A1D0075622B /* Contact+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73E287722DB2A1D0075622B /* Contact+CoreDataProperties.swift */; };
 		C73E287C22DB2A920075622B /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73E287B22DB2A920075622B /* DataProvider.swift */; };
 		C73E287E22DB32E30075622B /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73E287D22DB32E30075622B /* CoreDataStack.swift */; };
+		C76073CC22DE3E6700983150 /* URLSessionDataTaskMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76073CB22DE3E6700983150 /* URLSessionDataTaskMock.swift */; };
+		C76073CE22DE3E9500983150 /* URLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76073CD22DE3E9500983150 /* URLSessionMock.swift */; };
 		D3FF6B1A0F270B53D2DDD854 /* Pods_GoContactsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7335ABE27A5674D7F34FAB06 /* Pods_GoContactsTests.framework */; };
 		FA1F5B878098E42723808F3F /* Pods_GoContactsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6338C91322A282CABAA57B8D /* Pods_GoContactsUITests.framework */; };
 /* End PBXBuildFile section */
@@ -94,6 +96,8 @@
 		C73E287722DB2A1D0075622B /* Contact+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Contact+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C73E287B22DB2A920075622B /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		C73E287D22DB32E30075622B /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		C76073CB22DE3E6700983150 /* URLSessionDataTaskMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionDataTaskMock.swift; sourceTree = "<group>"; };
+		C76073CD22DE3E9500983150 /* URLSessionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionMock.swift; sourceTree = "<group>"; };
 		D3202A7F8C16F3B1DDE17948 /* Pods-GoContacts.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoContacts.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoContacts/Pods-GoContacts.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -221,6 +225,8 @@
 				C703EC3122DD07B3003438AF /* MediaTests.swift */,
 				C73E285522DB1CFD0075622B /* Info.plist */,
 				C703EC3722DD0E62003438AF /* mockData1.json */,
+				C76073CB22DE3E6700983150 /* URLSessionDataTaskMock.swift */,
+				C76073CD22DE3E9500983150 /* URLSessionMock.swift */,
 			);
 			path = GoContactsTests;
 			sourceTree = "<group>";
@@ -533,10 +539,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C76073CE22DE3E9500983150 /* URLSessionMock.swift in Sources */,
 				C703EC3C22DE0502003438AF /* UtilityTests.swift in Sources */,
 				C703EC3622DD0D53003438AF /* ApiRepositoryTests.swift in Sources */,
 				C703EC3222DD07B3003438AF /* MediaTests.swift in Sources */,
 				C703EC3422DD0A21003438AF /* CoreDataStackTests.swift in Sources */,
+				C76073CC22DE3E6700983150 /* URLSessionDataTaskMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

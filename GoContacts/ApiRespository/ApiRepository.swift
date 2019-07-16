@@ -16,7 +16,7 @@ enum ServerResponse {
 class ApiRepository {
 	static let shared = ApiRepository()
 	
-	let urlSession = URLSession.shared
+	var urlSession = URLSession.shared
 	private let baseURL = "http://localhost:3000"
 	
 	func getContacts(completion: @escaping(_ jsonDict: [[String: Any]]?, _ error: Error?) -> ()) {
