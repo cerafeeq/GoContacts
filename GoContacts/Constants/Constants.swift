@@ -10,5 +10,5 @@ import Foundation
 
 struct Constants {
 	static let missingImage = "/images/missing.png"
-	static let baseURL = "http://gojek-contacts-app.herokuapp.com"
+	static let baseURL = "https://go-contacts-server.herokuapp.com"
 }

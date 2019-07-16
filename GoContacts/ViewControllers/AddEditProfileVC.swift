@@ -71,17 +71,55 @@ class AddEditProfileVC: UITableViewController {
 
 	@objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
 	{
-		_ = tapGestureRecognizer.view as! UIImageView
-		let imagePicker = UIImagePickerController()
+		let imageView = tapGestureRecognizer.view as! UIImageView
+		let alert = UIAlertController(title: "Choose Photo", message: nil, preferredStyle: .actionSheet)
+		alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
+			self.openCamera()
+		}))
 
-		if UIImagePickerController.isSourceTypeAvailable(.camera) {
-			imagePicker.sourceType = .camera
-		} else {
-			imagePicker.sourceType = .photoLibrary
+		alert.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { _ in
+			self.openGallary()
+		}))
+
+		alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
+
+		switch UIDevice.current.userInterfaceIdiom {
+		case .pad:
+			alert.popoverPresentationController?.sourceView = imageView
+			alert.popoverPresentationController?.sourceRect = imageView.bounds
+			alert.popoverPresentationController?.permittedArrowDirections = .up
+		default:
+			break
 		}
 
+		self.present(alert, animated: true, completion: nil)
+	}
+
+	func openCamera()
+	{
+		let imagePicker = UIImagePickerController()
 		imagePicker.delegate = self
-		present(imagePicker, animated: true, completion: nil)
+		if(UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera))
+		{
+			imagePicker.sourceType = UIImagePickerController.SourceType.camera
+			imagePicker.allowsEditing = true
+			self.present(imagePicker, animated: true, completion: nil)
+		}
+		else
+		{
+			let alert  = UIAlertController(title: "Warning", message: "You don't have camera", preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+			self.present(alert, animated: true, completion: nil)
+		}
+	}
+
+	func openGallary()
+	{
+		let imagePicker = UIImagePickerController()
+		imagePicker.delegate = self
+		imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
+		imagePicker.allowsEditing = true
+		self.present(imagePicker, animated: true, completion: nil)
 	}
 
     // MARK: - Table view data source

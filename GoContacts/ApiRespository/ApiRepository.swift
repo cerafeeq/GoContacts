@@ -17,10 +17,9 @@ class ApiRepository {
 	static let shared = ApiRepository()
 	
 	var urlSession = URLSession.shared
-	private let baseURL = "http://localhost:3000"
 	
 	func getContacts(completion: @escaping(_ jsonDict: [[String: Any]]?, _ error: Error?) -> ()) {
-		let contactsURL = URL(string: baseURL + "/contacts.json")!
+		let contactsURL = URL(string: Constants.baseURL + "/contacts.json")!
 		urlSession.dataTask(with: contactsURL) { (data, response, error) in
 			if let error = error {
 				completion(nil, error)
@@ -45,7 +44,7 @@ class ApiRepository {
 	}
 
 	func getContact(id :Int32, completion: @escaping(_ jsonDict: [String: Any]?, _ error: Error?) -> ()) {
-		let contactURL = URL(string: baseURL + "/contacts/\(id).json")!
+		let contactURL = URL(string: Constants.baseURL + "/contacts/\(id).json")!
 		urlSession.dataTask(with: contactURL) { (data, response, error) in
 			if let error = error {
 				completion(nil, error)
@@ -70,7 +69,7 @@ class ApiRepository {
 	}
 
 	func createContact(params: [String: Any], image : UIImage?, completion: @escaping (ServerResponse, Data?) -> ()) {
-		guard let createURL = URL(string: baseURL + "/contacts.json") else { return }
+		guard let createURL = URL(string: Constants.baseURL + "/contacts.json") else { return }
 		var request = URLRequest(url: createURL)
 		request.httpMethod = "POST"
 
@@ -105,7 +104,7 @@ class ApiRepository {
 	}
 
 	func updateContact(id: Int32, params: [String: Any], image : UIImage?, completion: @escaping (ServerResponse, Data?) -> ()) {
-		guard let updateURL = URL(string: baseURL + "/contacts/\(id).json") else { return }
+		guard let updateURL = URL(string: Constants.baseURL + "/contacts/\(id).json") else { return }
 		var request = URLRequest(url: updateURL)
 		request.httpMethod = "PUT"
 

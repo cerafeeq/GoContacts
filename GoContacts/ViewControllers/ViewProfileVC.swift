@@ -81,7 +81,7 @@ class ViewProfileVC: UITableViewController {
 	}
 
 	@IBAction func callTapped(_ sender: Any) {
-		guard let phoneNumber = self.contact?.phoneNumber else { return }
+		guard let phoneNumber = self.contact!.phoneNumber else { return }
 
 		UIApplication.shared.open(URL(string: "tel://" + phoneNumber)!, options: [:], completionHandler: nil)
 	}
