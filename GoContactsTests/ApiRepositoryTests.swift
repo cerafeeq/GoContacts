@@ -79,13 +79,13 @@ class ApiRepositoryTests: XCTestCase {
 
 		session.response = HTTPURLResponse(url: URL(string: Constants.baseURL)!, statusCode: 201, httpVersion: nil, headerFields: [:])
 
-		var response: ServerResponse?
+		var err: Error?
 
-		repository.createContact(params: params, image: nil) { (serverResponse, data) in
-			response = serverResponse
+		repository.createContact(params: params, image: nil) { (_, error) in
+			err = error
 		}
 
-		XCTAssertEqual(response, ServerResponse.Success)
+		XCTAssert(err == nil)
 	}
 
 	func testUpdateContact() {
@@ -98,13 +98,27 @@ class ApiRepositoryTests: XCTestCase {
 
 		session.response = HTTPURLResponse(url: URL(string: Constants.baseURL)!, statusCode: 200, httpVersion: nil, headerFields: [:])
 
-		var response: ServerResponse?
+		var err: Error?
 
-		repository.updateContact(id: 35, params: params, image: nil) { (serverResponse, data) in
-			response = serverResponse
+		repository.updateContact(id: 35, params: params, image: nil) { (_, error) in
+			err = error
 		}
 
-		XCTAssertEqual(response, ServerResponse.Success)
+		XCTAssert(err == nil)
 	}
 
+	func testDeleteContact() {
+		let session = URLSessionMock()
+		repository.urlSession = session
+
+		session.response = HTTPURLResponse(url: URL(string: Constants.baseURL)!, statusCode: 204, httpVersion: nil, headerFields: [:])
+
+		var err: Error?
+
+		repository.deleteContact(id: 1) { error in
+			err = error
+		}
+
+		XCTAssert(err == nil)
+	}
 }

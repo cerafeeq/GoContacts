@@ -468,9 +468,12 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H8H-t7-SjI">
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H8H-t7-SjI">
                                                     <rect key="frame" x="20" y="7" width="103" height="30"/>
                                                     <state key="normal" title="Delete Contact"/>
+                                                    <connections>
+                                                        <action selector="deleteTapped:" destination="s9z-yK-GMa" eventType="touchUpInside" id="SrV-9Y-Lap"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -500,6 +503,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="deleteBtn" destination="H8H-t7-SjI" id="isx-4M-Lfs"/>
                         <outlet property="doneBtn" destination="c14-j0-tiY" id="I2Q-IJ-9fg"/>
                         <outlet property="emailField" destination="dbH-9p-k04" id="74y-e7-Rto"/>
                         <outlet property="firstNameField" destination="MqZ-hd-7oN" id="5tQ-rY-IoE"/>
@@ -507,9 +511,11 @@
                         <outlet property="mobileField" destination="ZHv-V8-bOC" id="acd-5Q-spj"/>
                         <outlet property="profileImageView" destination="vJL-oh-30b" id="Qqn-Bw-uYG"/>
                         <outlet property="viewCell" destination="kwb-fU-DoU" id="z5f-Hp-anU"/>
+                        <segue destination="cZt-gd-mZ4" kind="unwind" identifier="unwindSegueToListVC" unwindAction="unwindToListVCWithSegue:" id="G0P-R4-B5U"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1K9-NT-e19" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="cZt-gd-mZ4" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3820" y="158.77061469265368"/>
         </scene>

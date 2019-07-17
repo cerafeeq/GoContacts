@@ -9,6 +9,13 @@
 import Foundation
 import CoreData
 
+let dataErrorDomain = "dataErrorDomain"
+
+enum DataErrorCode: NSInteger {
+	case networkUnawailable = 101
+	case wrongDataFormat = 102
+}
+
 class DataProvider {
 	private let persistentContainer: NSPersistentContainer
 	private let repository: ApiRepository
@@ -118,6 +125,19 @@ class DataProvider {
 			}
 		}
 	}
+
+	func deleteFromLocalStore(object: Contact?) {
+		guard let object = object else { return }
+		let viewContext = CoreDataStack.shared.persistentContainer.viewContext
+		viewContext.delete(object)
+
+		do {
+			try viewContext.save()
+		} catch {
+			print("Error: \(error)\nCould not save Core Data context.")
+		}
+	}
+
 
 	func updateInLocalStore(params: [String : Any], imageUpdated: Bool) {
 		guard let id = params["id"] as? Int32 else { return }

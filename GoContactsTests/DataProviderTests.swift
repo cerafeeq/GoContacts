@@ -22,15 +22,6 @@ class DataProviderTests: XCTestCase {
 		super.tearDown()
 	}
 
-	func testUpdateInLocalStore() {
-		var dict = [String : Any]()
-		let id: Int32 = 35
-		dict.updateValue(id, forKey: "id")
-		dict.updateValue(false, forKey: "favorite")
-
-		provider.updateInLocalStore(params: dict, imageUpdated: false)
-	}
-
 	func testSaveInLocalStore() {
 		var dict = [String : Any]()
 		dict.updateValue(35, forKey: "id")
@@ -40,6 +31,15 @@ class DataProviderTests: XCTestCase {
 		dict.updateValue("shawn@hope.com", forKey: "email")
 
 		provider.saveInLocalStore(params: dict)
+	}
+
+	func testUpdateInLocalStore() {
+		var dict = [String : Any]()
+		let id: Int32 = 35
+		dict.updateValue(id, forKey: "id")
+		dict.updateValue(false, forKey: "favorite")
+
+		provider.updateInLocalStore(params: dict, imageUpdated: false)
 	}
 
 	func testFetchContacts() {

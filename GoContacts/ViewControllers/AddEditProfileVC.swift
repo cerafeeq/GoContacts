@@ -13,7 +13,7 @@ protocol ContactSyncDelegate {
 }
 
 class AddEditProfileVC: UITableViewController {
-	let fieldCount = 5
+	let fieldCount = 6
 	let sectionCount = 1
 
 	var contact: Contact?
@@ -29,6 +29,7 @@ class AddEditProfileVC: UITableViewController {
 	@IBOutlet var emailField: UITextField!
 	@IBOutlet var viewCell: UITableViewCell!
 	@IBOutlet var doneBtn: UIBarButtonItem!
+	@IBOutlet var deleteBtn: UIButton!
 
 	var delegate: ContactSyncDelegate!
 
@@ -57,6 +58,8 @@ class AddEditProfileVC: UITableViewController {
 		}
 
 		isEdit = true
+
+		deleteBtn.isHidden = false
 
 		firstNameField.text = contact.firstName
 		lastNameField.text = contact.lastName
@@ -156,6 +159,61 @@ class AddEditProfileVC: UITableViewController {
 		self.dismiss(animated: true, completion: nil)
 	}
 
+	func updateContact(params: [String : String], image: UIImage?) {
+		ApiRepository.shared.updateContact(id: contact!.id, params: params, image: image) { (data, error) in
+			if (error != nil) {
+				DispatchQueue.main.async { [weak self] in
+					let ac = UIAlertController(title: "Contacts", message: "Failed to create contact", preferredStyle: .alert)
+					ac.addAction(UIAlertAction(title: "OK", style: .default))
+					self?.present(ac, animated: true)
+				}
+			} else {
+				// if update is succesful, update in CoreData
+				var jsonDict : [String : Any]?
+
+				do {
+					let jsonObject = try JSONSerialization.jsonObject(with: data!, options: [])
+					jsonDict = jsonObject as? [String: Any]
+				} catch {
+					return
+				}
+
+				DispatchQueue.main.async { [weak self] in
+					DataProvider.shared.updateInLocalStore(params: jsonDict!, imageUpdated: self!.isImageModified)
+					self?.dismiss(animated: true, completion: nil)
+					self?.delegate.contactDidChange(params: jsonDict!, imageModified: self!.isImageModified)
+				}
+			}
+		}
+	}
+
+	func createContact(params: [String : String], image: UIImage?) {
+		ApiRepository.shared.createContact(params: params, image: image) { (data, error) in
+			if (error != nil) {
+				DispatchQueue.main.async { [weak self] in
+					let ac = UIAlertController(title: "Contacts", message: "Failed to create contact", preferredStyle: .alert)
+					ac.addAction(UIAlertAction(title: "OK", style: .default))
+					self?.present(ac, animated: true)
+				}
+			} else {
+				//  If upload is successful, add contact to CoreData
+				var jsonDict : [String : Any]?
+
+				do {
+					let jsonObject = try JSONSerialization.jsonObject(with: data!, options: [])
+					jsonDict = jsonObject as? [String: Any]
+				} catch {
+					return
+				}
+
+				DispatchQueue.main.async { [weak self] in
+					DataProvider.shared.saveInLocalStore(params: jsonDict!)
+					self?.dismiss(animated: true, completion: nil)
+				}
+			}
+		}
+	}
+
 	@IBAction func doneTapped(_ sender: Any) {
 		var dictContact = [String : String]()
 
@@ -171,58 +229,33 @@ class AddEditProfileVC: UITableViewController {
 		dictContact.updateValue(mobileField.text!, forKey: "phone_number")
 
 		if (isEdit) {
-			ApiRepository.shared.updateContact(id: contact!.id, params: dictContact, image: image) { serverResponse, data in
-				if (serverResponse == .Failure) {
-					DispatchQueue.main.async { [weak self] in
-						let ac = UIAlertController(title: "Contacts", message: "Failed to create contact", preferredStyle: .alert)
-						ac.addAction(UIAlertAction(title: "OK", style: .default))
-						self?.present(ac, animated: true)
-					}
-				} else {
-					// if update is succesful, update in CoreData
-					var jsonDict : [String : Any]?
-
-					do {
-						let jsonObject = try JSONSerialization.jsonObject(with: data!, options: [])
-						jsonDict = jsonObject as? [String: Any]
-					} catch {
-						return
-					}
-
-					DispatchQueue.main.async { [weak self] in
-						DataProvider.shared.updateInLocalStore(params: jsonDict!, imageUpdated: self!.isImageModified)
-						self?.dismiss(animated: true, completion: nil)
-						self?.delegate.contactDidChange(params: jsonDict!, imageModified: self!.isImageModified)
-					}
-				}
-			}
+			updateContact(params: dictContact, image: image)
 		} else {
-			ApiRepository.shared.createContact(params: dictContact, image: image) { serverResponse, data in
-				if (serverResponse == .Failure) {
-					DispatchQueue.main.async { [weak self] in
-						let ac = UIAlertController(title: "Contacts", message: "Failed to create contact", preferredStyle: .alert)
-						ac.addAction(UIAlertAction(title: "OK", style: .default))
-						self?.present(ac, animated: true)
-					}
-				} else {
-					//  If upload is successful, add contact to CoreData
-					var jsonDict : [String : Any]?
+			createContact(params: dictContact, image: image)
+		}
+	}
 
-					do {
-						let jsonObject = try JSONSerialization.jsonObject(with: data!, options: [])
-						jsonDict = jsonObject as? [String: Any]
-					} catch {
-						return
-					}
+	@IBAction func deleteTapped(_ sender: Any) {
+		guard let contact = contact else { return }
 
-					DispatchQueue.main.async { [weak self] in
-						DataProvider.shared.saveInLocalStore(params: jsonDict!)
-						self?.dismiss(animated: true, completion: nil)
-					}
+		ApiRepository.shared.deleteContact(id: contact.id) { (error) in
+			if (error != nil) {
+				DispatchQueue.main.async { [weak self] in
+					let ac = UIAlertController(title: "Contacts", message: "Failed to delete contact", preferredStyle: .alert)
+					ac.addAction(UIAlertAction(title: "OK", style: .default))
+					self?.present(ac, animated: true)
+				}
+			} else {
+				DispatchQueue.main.async { [weak self] in
+					//  If delete is successful, remove from CoreData
+					DataProvider.shared.deleteFromLocalStore(object: contact)
+
+					self?.performSegue(withIdentifier: "unwindSegueToListVC", sender: self)
 				}
 			}
 		}
 	}
+
 }
 
 extension AddEditProfileVC: UINavigationControllerDelegate, UIImagePickerControllerDelegate {

@@ -66,6 +66,10 @@ class ContactsListVC: UITableViewController {
 		return cell
 	}
 
+	@IBAction func unwindToListVC(segue: UIStoryboardSegue) {
+
+	}
+
 	override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
 		return fetchedResultsController.sectionIndexTitles
 	}

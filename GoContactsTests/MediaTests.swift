@@ -14,6 +14,9 @@ class MediaTests: XCTestCase {
 
     override func setUp() {
 		super.setUp()
+	}
+
+	func testInit() {
 		let image = UIImage(named: "placeholder")
 		media = Media(withImage: image!, forKey: "Test")
 	}
