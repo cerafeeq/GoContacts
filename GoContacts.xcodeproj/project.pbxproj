@@ -37,6 +37,7 @@
 		C76073D022DE547200983150 /* mockData2.json in Resources */ = {isa = PBXBuildFile; fileRef = C76073CF22DE547200983150 /* mockData2.json */; };
 		C76073D222DE69A200983150 /* DataProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76073D122DE69A200983150 /* DataProviderTests.swift */; };
 		C76073D422DF01B500983150 /* UIBUtton+Insets.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76073D322DF01B500983150 /* UIBUtton+Insets.swift */; };
+		C76073D622DF7A1200983150 /* MockCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76073D522DF7A1200983150 /* MockCoreDataStack.swift */; };
 		D3FF6B1A0F270B53D2DDD854 /* Pods_GoContactsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7335ABE27A5674D7F34FAB06 /* Pods_GoContactsTests.framework */; };
 		FA1F5B878098E42723808F3F /* Pods_GoContactsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6338C91322A282CABAA57B8D /* Pods_GoContactsUITests.framework */; };
 /* End PBXBuildFile section */
@@ -102,6 +103,7 @@
 		C76073CF22DE547200983150 /* mockData2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = mockData2.json; sourceTree = "<group>"; };
 		C76073D122DE69A200983150 /* DataProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProviderTests.swift; sourceTree = "<group>"; };
 		C76073D322DF01B500983150 /* UIBUtton+Insets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBUtton+Insets.swift"; sourceTree = "<group>"; };
+		C76073D522DF7A1200983150 /* MockCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCoreDataStack.swift; sourceTree = "<group>"; };
 		D3202A7F8C16F3B1DDE17948 /* Pods-GoContacts.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoContacts.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoContacts/Pods-GoContacts.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -233,6 +235,7 @@
 				C76073CB22DE3E6700983150 /* URLSessionDataTaskMock.swift */,
 				C76073CD22DE3E9500983150 /* URLSessionMock.swift */,
 				C76073CF22DE547200983150 /* mockData2.json */,
+				C76073D522DF7A1200983150 /* MockCoreDataStack.swift */,
 			);
 			path = GoContactsTests;
 			sourceTree = "<group>";
@@ -551,6 +554,7 @@
 				C703EC3C22DE0502003438AF /* UtilityTests.swift in Sources */,
 				C703EC3622DD0D53003438AF /* ApiRepositoryTests.swift in Sources */,
 				C703EC3222DD07B3003438AF /* MediaTests.swift in Sources */,
+				C76073D622DF7A1200983150 /* MockCoreDataStack.swift in Sources */,
 				C703EC3422DD0A21003438AF /* CoreDataStackTests.swift in Sources */,
 				C76073CC22DE3E6700983150 /* URLSessionDataTaskMock.swift in Sources */,
 			);

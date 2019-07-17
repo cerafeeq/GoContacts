@@ -21,7 +21,7 @@ class CoreDataStack {
 			fatalError("Unresolved error: \(error), \(error.userInfo)")
 		})
 
-		container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+		container.viewContext.mergePolicy = NSOverwriteMergePolicy
 		container.viewContext.undoManager = nil
 		container.viewContext.shouldDeleteInaccessibleFaults = true
 

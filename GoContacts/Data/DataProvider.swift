@@ -56,14 +56,10 @@ class DataProvider {
 	private func syncContacts(jsonDictionary: [[String: Any]], taskContext: NSManagedObjectContext) -> Bool {
 		var successfull = false
 		taskContext.performAndWait {
-			let matchingRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Contact")
-			let ids = jsonDictionary.map { $0["id"] as? Int }.compactMap { $0 }
-			matchingRequest.predicate = NSPredicate(format: "id in %@", argumentArray: [ids])
-
-			let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: matchingRequest)
+			let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Contact")
+			let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetch)
 			batchDeleteRequest.resultType = .resultTypeObjectIDs
 
-			// Execute the request to de batch delete and merge the changes to viewContext, which triggers the UI update
 			do {
 				let batchDeleteResult = try taskContext.execute(batchDeleteRequest) as? NSBatchDeleteResult
 

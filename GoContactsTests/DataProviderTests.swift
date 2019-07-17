@@ -14,7 +14,7 @@ class DataProviderTests: XCTestCase {
 	var repository: ApiRepository = ApiRepository.shared
 	var provider: DataProvider = DataProvider.shared
 
-    override func setUp() {
+	override func setUp() {
 		super.setUp()
 	}
 
