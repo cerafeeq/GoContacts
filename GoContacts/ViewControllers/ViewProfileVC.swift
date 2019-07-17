@@ -21,6 +21,9 @@ class ViewProfileVC: UITableViewController {
 	@IBOutlet var favoriteBtn: UIButton!
 	@IBOutlet var phoneLbl: UILabel!
 	@IBOutlet var viewCell: UITableViewCell!
+	@IBOutlet var messageBtn: UIButton!
+	@IBOutlet var callBtn: UIButton!
+	@IBOutlet var emailBtn: UIButton!
 
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +36,11 @@ class ViewProfileVC: UITableViewController {
 		nameLbl.text = contact.firstName! + " " + contact.lastName!
 		self.phoneLbl.text = self.contact!.phoneNumber
 		self.emailLbl.text = self.contact!.email
+
+		favoriteBtn.alignTextUnderImage()
+		callBtn.alignTextUnderImage()
+		messageBtn.alignTextUnderImage()
+		emailBtn.alignTextUnderImage()
 
 		profileImageView.sd_setImage(with: URL(string: contact.profilePic!), placeholderImage: UIImage(named: "placeholder"))
 

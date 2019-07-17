@@ -113,42 +113,57 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="z57-1l-8j4">
-                                                    <rect key="frame" x="44" y="213" width="287" height="44"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="z57-1l-8j4">
+                                                    <rect key="frame" x="44" y="202" width="287" height="55"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZoG-jh-8oM">
-                                                            <rect key="frame" x="0.0" y="0.0" width="72" height="44"/>
+                                                            <rect key="frame" x="0.0" y="5.5" width="64.5" height="44"/>
                                                             <accessibility key="accessibilityConfiguration" identifier="Message"/>
-                                                            <state key="normal" image="message"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <state key="normal" title="message" image="message">
+                                                                <color key="titleColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
                                                             <connections>
                                                                 <action selector="messageTapped:" destination="V8C-Sf-2yF" eventType="touchUpInside" id="P0S-lL-pqd"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FTW-2s-Qsm">
-                                                            <rect key="frame" x="72" y="0.0" width="71.5" height="44"/>
+                                                            <rect key="frame" x="74.5" y="5.5" width="64" height="44"/>
                                                             <accessibility key="accessibilityConfiguration" identifier="Call"/>
-                                                            <state key="normal" image="call"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <state key="normal" title="call" image="call">
+                                                                <color key="titleColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
                                                             <connections>
                                                                 <action selector="callTapped:" destination="V8C-Sf-2yF" eventType="touchUpInside" id="YxM-bf-RNX"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RnB-9I-62h">
-                                                            <rect key="frame" x="143.5" y="0.0" width="72" height="44"/>
+                                                            <rect key="frame" x="148.5" y="5.5" width="64.5" height="44"/>
                                                             <accessibility key="accessibilityConfiguration" identifier="Email"/>
-                                                            <state key="normal" image="email"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <state key="normal" title="email" image="email">
+                                                                <color key="titleColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
                                                             <connections>
                                                                 <action selector="emailTapped:" destination="V8C-Sf-2yF" eventType="touchUpInside" id="esl-wB-nLS"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ykn-u3-yaw">
-                                                            <rect key="frame" x="215.5" y="0.0" width="71.5" height="44"/>
+                                                            <rect key="frame" x="223" y="5.5" width="64" height="44"/>
                                                             <accessibility key="accessibilityConfiguration" identifier="Favorite"/>
-                                                            <state key="normal" image="favorite"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <state key="normal" title="favorite" image="favorite">
+                                                                <color key="titleColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
                                                             <connections>
                                                                 <action selector="favoriteTapped:" destination="V8C-Sf-2yF" eventType="touchUpInside" id="oxn-H3-PMX"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="55" id="ulR-gM-Yge"/>
+                                                    </constraints>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
@@ -248,8 +263,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="callBtn" destination="FTW-2s-Qsm" id="xDU-Ti-hIk"/>
+                        <outlet property="emailBtn" destination="RnB-9I-62h" id="oCy-Sz-n9l"/>
                         <outlet property="emailLbl" destination="6Ho-wI-q6A" id="Zup-WQ-Cjw"/>
                         <outlet property="favoriteBtn" destination="ykn-u3-yaw" id="pBo-mc-Haf"/>
+                        <outlet property="messageBtn" destination="ZoG-jh-8oM" id="Opn-ga-VUv"/>
                         <outlet property="nameLbl" destination="LxO-zL-Oaf" id="P4U-bd-Zde"/>
                         <outlet property="phoneLbl" destination="PJu-dC-S8X" id="Ch4-q5-BhX"/>
                         <outlet property="profileImageView" destination="eeN-Bf-F0Q" id="gx8-dt-RQO"/>
@@ -258,7 +276,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hQF-Bs-DA7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2078" y="598"/>
+            <point key="canvasLocation" x="2077.5999999999999" y="597.75112443778119"/>
         </scene>
         <!--Add Edit ProfileVC-->
         <scene sceneID="Tj0-yr-KXo">
@@ -440,6 +458,24 @@
                                                 <constraint firstAttribute="trailing" secondItem="PWK-o3-vU6" secondAttribute="trailing" constant="20" id="qbC-Z2-ZCq"/>
                                                 <constraint firstItem="PWK-o3-vU6" firstAttribute="leading" secondItem="HqG-MY-BWe" secondAttribute="leading" constant="20" id="xEI-Z7-5Me"/>
                                                 <constraint firstItem="PWK-o3-vU6" firstAttribute="centerY" secondItem="HqG-MY-BWe" secondAttribute="centerY" id="zFr-dU-9kj"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Mtr-4e-FJq">
+                                        <rect key="frame" x="0.0" y="356" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Mtr-4e-FJq" id="Yim-e5-VQM">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H8H-t7-SjI">
+                                                    <rect key="frame" x="20" y="7" width="103" height="30"/>
+                                                    <state key="normal" title="Delete Contact"/>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="H8H-t7-SjI" firstAttribute="centerY" secondItem="Yim-e5-VQM" secondAttribute="centerY" id="ekv-wz-3Jc"/>
+                                                <constraint firstItem="H8H-t7-SjI" firstAttribute="leading" secondItem="Yim-e5-VQM" secondAttribute="leading" constant="20" id="mAL-as-ran"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

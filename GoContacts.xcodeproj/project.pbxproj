@@ -36,6 +36,7 @@
 		C76073CE22DE3E9500983150 /* URLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76073CD22DE3E9500983150 /* URLSessionMock.swift */; };
 		C76073D022DE547200983150 /* mockData2.json in Resources */ = {isa = PBXBuildFile; fileRef = C76073CF22DE547200983150 /* mockData2.json */; };
 		C76073D222DE69A200983150 /* DataProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76073D122DE69A200983150 /* DataProviderTests.swift */; };
+		C76073D422DF01B500983150 /* UIBUtton+Insets.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76073D322DF01B500983150 /* UIBUtton+Insets.swift */; };
 		D3FF6B1A0F270B53D2DDD854 /* Pods_GoContactsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7335ABE27A5674D7F34FAB06 /* Pods_GoContactsTests.framework */; };
 		FA1F5B878098E42723808F3F /* Pods_GoContactsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6338C91322A282CABAA57B8D /* Pods_GoContactsUITests.framework */; };
 /* End PBXBuildFile section */
@@ -100,6 +101,7 @@
 		C76073CD22DE3E9500983150 /* URLSessionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionMock.swift; sourceTree = "<group>"; };
 		C76073CF22DE547200983150 /* mockData2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = mockData2.json; sourceTree = "<group>"; };
 		C76073D122DE69A200983150 /* DataProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProviderTests.swift; sourceTree = "<group>"; };
+		C76073D322DF01B500983150 /* UIBUtton+Insets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBUtton+Insets.swift"; sourceTree = "<group>"; };
 		D3202A7F8C16F3B1DDE17948 /* Pods-GoContacts.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoContacts.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoContacts/Pods-GoContacts.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -156,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				C703EC2422DB6CAA003438AF /* Data+Append.swift */,
+				C76073D322DF01B500983150 /* UIBUtton+Insets.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -531,6 +534,7 @@
 				C73E286E22DB1E550075622B /* ContactsListVC.swift in Sources */,
 				C73E287422DB27810075622B /* ApiRepository.swift in Sources */,
 				C73E287822DB2A1D0075622B /* Contact+CoreDataClass.swift in Sources */,
+				C76073D422DF01B500983150 /* UIBUtton+Insets.swift in Sources */,
 				C703EC2222DB6BC5003438AF /* Media.swift in Sources */,
 				C703EC2522DB6CAA003438AF /* Data+Append.swift in Sources */,
 				C73E287122DB26820075622B /* ContactsListViewCell.swift in Sources */,
