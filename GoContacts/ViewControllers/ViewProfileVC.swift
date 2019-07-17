@@ -54,7 +54,7 @@ class ViewProfileVC: UITableViewController {
 				self.emailLbl.text = self.contact!.email
 
 				// update in Core Data
-				DataProvider.shared.updateInLocalStore(params: jsonDictionary, imageUpdated: false)
+				DataProvider.shared.updateInLocalStore(object: self.contact, params: jsonDictionary, imageUpdated: false)
 			}
 		}
     }
@@ -99,7 +99,7 @@ class ViewProfileVC: UITableViewController {
 
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if let nc = segue.destination as? UINavigationController, let vc = nc.topViewController as? AddEditProfileVC  {
-			vc.contact = contact
+			vc.contact = self.contact
 			vc.delegate = self
 		}
 	}

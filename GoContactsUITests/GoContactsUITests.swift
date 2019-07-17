@@ -32,7 +32,7 @@ class GoContactsUITests: XCTestCase {
 		lastNameField.typeText(lastName)
 
 		let mobileField = app.textFields["Mobile"]
-		let mobile = "+971 569901801"
+		let mobile = "9899323211"
 		mobileField.tap()
 		mobileField.typeText(mobile)
 
@@ -98,7 +98,7 @@ class GoContactsUITests: XCTestCase {
 		app.buttons["Edit"].tap()
 
 		let mobileField = app.textFields["Mobile"]
-		let mobile = "+971 569901801"
+		let mobile = "9569901801"
 		mobileField.tap()
 		mobileField.buttons["Clear text"].tap()
 		mobileField.tap()

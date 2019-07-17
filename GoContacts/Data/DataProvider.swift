@@ -80,7 +80,7 @@ class DataProvider {
 				do {
 					try contact.update(with: dict, imageUpdated: true)
 				} catch {
-					print("Error: \(error)\nThe quake object will be deleted.")
+					print("Error: \(error)\nThe stale object will be deleted.")
 					taskContext.delete(contact)
 				}
 			}
@@ -97,6 +97,26 @@ class DataProvider {
 			successfull = true
 		}
 		return successfull
+	}
+
+	func updateInLocalStore(object: Contact?, params: [String : Any], imageUpdated: Bool) {
+		guard let object = object else { return }
+
+		let viewContext = CoreDataStack.shared.persistentContainer.viewContext
+
+		do {
+			try object.update(with: params, imageUpdated: imageUpdated)
+		} catch {
+			print("Error: \(error)\nUnable to update.")
+		}
+
+		if viewContext.hasChanges {
+			do {
+				try viewContext.save()
+			} catch {
+				print("Error: \(error)\nCould not save Core Data context.")
+			}
+		}
 	}
 
 	func updateInLocalStore(params: [String : Any], imageUpdated: Bool) {
@@ -124,7 +144,7 @@ class DataProvider {
 		do {
 			try currentContact!.update(with: params, imageUpdated: imageUpdated)
 		} catch {
-			print("Error: \(error)\nThe quake object will be deleted.")
+			print("Error: \(error)\n Unable to update.")
 		}
 
 		if viewContext.hasChanges {
@@ -133,7 +153,7 @@ class DataProvider {
 			} catch {
 				print("Error: \(error)\nCould not save Core Data context.")
 			}
-			viewContext.reset() // Reset the context to clean up the cache and low the im memory footprint.
+			// viewContext.reset() // Reset the context to clean up the cache and low the im memory footprint.
 		}
 	}
 
